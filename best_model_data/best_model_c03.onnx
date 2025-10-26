@@ -1,0 +1,2119 @@
+
+pytorch2.9.0:∆≥
+ı
+input
+conv1.weight
+val_5conv2dnode_conv2d"Conv*
+group†*
+pads@@@@†*
+strides@@†*
+auto_pad"NOTSET†*
+	dilations@@†J^
+	namespaceQ: __main__.ResNet/conv1: torch.nn.modules.conv.Conv2d/conv2d: aten.conv2d.defaultJl
+pkg.torch.onnx.class_hierarchyJ['__main__.ResNet', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J©
+pkg.torch.onnx.fx_nodeé%conv2d : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%x, %p_conv1_weight, None, [1, 1], [1, 1]), kwargs = {})J5
+pkg.torch.onnx.name_scopes['', 'conv1', 'conv2d']J¨
+pkg.torch.onnx.stack_traceçFile "/Users/I585008/gen_onnx.py", line 82, in forward
+    x = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+Í
+conv2d
+
+bn1.weight
+bn1.bias
+bn1.running_mean
+bn1.running_vargetitem,node__native_batch_norm_legit_no_training__0"BatchNormalization*
+momentumfff?†*
+epsilon¨≈'7†J£
+	namespaceï: __main__.ResNet/bn1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training: aten._native_batch_norm_legit_no_training.defaultJî
+pkg.torch.onnx.class_hierarchyr['__main__.ResNet', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jî
+pkg.torch.onnx.fx_node˘%_native_batch_norm_legit_no_training : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d, %p_bn1_weight, %p_bn1_bias, %b_bn1_running_mean, %b_bn1_running_var, 0.1, 1e-05), kwargs = {})JQ
+pkg.torch.onnx.name_scopes3['', 'bn1', '_native_batch_norm_legit_no_training']Jç
+pkg.torch.onnx.stack_traceÓFile "/Users/I585008/gen_onnx.py", line 82, in forward
+    x = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+›
+getitemrelu	node_relu"ReluJc
+	namespaceV: __main__.ResNet/activation: torch.nn.modules.activation.ReLU/relu: aten.relu.defaultJn
+pkg.torch.onnx.class_hierarchyL['__main__.ResNet', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']JÑ
+pkg.torch.onnx.fx_nodej%relu : [num_users=2] = call_function[target=torch.ops.aten.relu.default](args = (%getitem,), kwargs = {})J8
+pkg.torch.onnx.name_scopes['', 'activation', 'relu']J§
+pkg.torch.onnx.stack_traceÖFile "/Users/I585008/gen_onnx.py", line 82, in forward
+    x = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 144, in forward
+    return F.relu(input, inplace=self.inplace)
+•
+
+relu
+layer1.0.conv1.weight
+val_5conv2d_1node_conv2d_1"Conv*
+group†*
+pads@@@@†*
+strides@@†*
+auto_pad"NOTSET†*
+	dilations@@†J∂
+	namespace®: __main__.ResNet/layer1: torch.nn.modules.container.Sequential/layer1.0: __main__.BasicBlock/layer1.0.conv1: torch.nn.modules.conv.Conv2d/conv2d_1: aten.conv2d.defaultJ≠
+pkg.torch.onnx.class_hierarchyä['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J∑
+pkg.torch.onnx.fx_nodeú%conv2d_1 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%relu, %p_layer1_0_conv1_weight, None, [1, 1], [1, 1]), kwargs = {})JV
+pkg.torch.onnx.name_scopes8['', 'layer1', 'layer1.0', 'layer1.0.conv1', 'conv2d_1']JÜ
+pkg.torch.onnx.stack_traceÁFile "/Users/I585008/gen_onnx.py", line 83, in forward
+    x = self.layer1(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+œ
+conv2d_1
+layer1.0.bn1.weight
+layer1.0.bn1.bias
+layer1.0.bn1.running_mean
+layer1.0.bn1.running_var	getitem_3.node__native_batch_norm_legit_no_training_1__0"BatchNormalization*
+momentumfff?†*
+epsilon¨≈'7†J˙
+	namespaceÏ: __main__.ResNet/layer1: torch.nn.modules.container.Sequential/layer1.0: __main__.BasicBlock/layer1.0.bn1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_1: aten._native_batch_norm_legit_no_training.defaultJ’
+pkg.torch.onnx.class_hierarchy≤['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jº
+pkg.torch.onnx.fx_node°%_native_batch_norm_legit_no_training_1 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_1, %p_layer1_0_bn1_weight, %p_layer1_0_bn1_bias, %b_layer1_0_bn1_running_mean, %b_layer1_0_bn1_running_var, 0.1, 1e-05), kwargs = {})Jr
+pkg.torch.onnx.name_scopesT['', 'layer1', 'layer1.0', 'layer1.0.bn1', '_native_batch_norm_legit_no_training_1']JÁ
+pkg.torch.onnx.stack_trace»File "/Users/I585008/gen_onnx.py", line 83, in forward
+    x = self.layer1(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+˝
+	getitem_3relu_1node_relu_1"ReluJª
+	namespace≠: __main__.ResNet/layer1: torch.nn.modules.container.Sequential/layer1.0: __main__.BasicBlock/layer1.0.activation: torch.nn.modules.activation.ReLU/relu_1: aten.relu.defaultJØ
+pkg.torch.onnx.class_hierarchyå['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']Jà
+pkg.torch.onnx.fx_noden%relu_1 : [num_users=1] = call_function[target=torch.ops.aten.relu.default](args = (%getitem_3,), kwargs = {})JY
+pkg.torch.onnx.name_scopes;['', 'layer1', 'layer1.0', 'layer1.0.activation', 'relu_1']J˛
+pkg.torch.onnx.stack_traceﬂFile "/Users/I585008/gen_onnx.py", line 83, in forward
+    x = self.layer1(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 144, in forward
+    return F.relu(input, inplace=self.inplace)
+ö
+
+relu_1
+layer1.0.conv2.weight
+val_5conv2d_2node_conv2d_2"Conv*
+group†*
+pads@@@@†*
+strides@@†*
+auto_pad"NOTSET†*
+	dilations@@†J∂
+	namespace®: __main__.ResNet/layer1: torch.nn.modules.container.Sequential/layer1.0: __main__.BasicBlock/layer1.0.conv2: torch.nn.modules.conv.Conv2d/conv2d_2: aten.conv2d.defaultJ≠
+pkg.torch.onnx.class_hierarchyä['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']Jπ
+pkg.torch.onnx.fx_nodeû%conv2d_2 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%relu_1, %p_layer1_0_conv2_weight, None, [1, 1], [1, 1]), kwargs = {})JV
+pkg.torch.onnx.name_scopes8['', 'layer1', 'layer1.0', 'layer1.0.conv2', 'conv2d_2']J˜
+pkg.torch.onnx.stack_traceÿFile "/Users/I585008/gen_onnx.py", line 83, in forward
+    x = self.layer1(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 52, in forward
+    out = self.bn2(self.conv2(out))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+¿
+conv2d_2
+layer1.0.bn2.weight
+layer1.0.bn2.bias
+layer1.0.bn2.running_mean
+layer1.0.bn2.running_var	getitem_6.node__native_batch_norm_legit_no_training_2__0"BatchNormalization*
+momentumfff?†*
+epsilon¨≈'7†J˙
+	namespaceÏ: __main__.ResNet/layer1: torch.nn.modules.container.Sequential/layer1.0: __main__.BasicBlock/layer1.0.bn2: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_2: aten._native_batch_norm_legit_no_training.defaultJ’
+pkg.torch.onnx.class_hierarchy≤['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jº
+pkg.torch.onnx.fx_node°%_native_batch_norm_legit_no_training_2 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_2, %p_layer1_0_bn2_weight, %p_layer1_0_bn2_bias, %b_layer1_0_bn2_running_mean, %b_layer1_0_bn2_running_var, 0.1, 1e-05), kwargs = {})Jr
+pkg.torch.onnx.name_scopesT['', 'layer1', 'layer1.0', 'layer1.0.bn2', '_native_batch_norm_legit_no_training_2']Jÿ
+pkg.torch.onnx.stack_traceπFile "/Users/I585008/gen_onnx.py", line 83, in forward
+    x = self.layer1(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 52, in forward
+    out = self.bn2(self.conv2(out))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+’
+	getitem_6
+reluadd_5
+node_add_5"AddJÅ
+	namespacet: __main__.ResNet/layer1: torch.nn.modules.container.Sequential/layer1.0: __main__.BasicBlock/add_5: aten.add.TensorJà
+pkg.torch.onnx.class_hierarchyf['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'aten.add.Tensor']Jã
+pkg.torch.onnx.fx_nodeq%add_5 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%getitem_6, %relu), kwargs = {})JA
+pkg.torch.onnx.name_scopes#['', 'layer1', 'layer1.0', 'add_5']J…
+pkg.torch.onnx.stack_trace™File "/Users/I585008/gen_onnx.py", line 83, in forward
+    x = self.layer1(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 53, in forward
+    out += self.shortcut(x)
+·
+add_5relu_2node_relu_2"ReluJª
+	namespace≠: __main__.ResNet/layer1: torch.nn.modules.container.Sequential/layer1.0: __main__.BasicBlock/layer1.0.activation: torch.nn.modules.activation.ReLU/relu_2: aten.relu.defaultJØ
+pkg.torch.onnx.class_hierarchyå['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']JÑ
+pkg.torch.onnx.fx_nodej%relu_2 : [num_users=2] = call_function[target=torch.ops.aten.relu.default](args = (%add_5,), kwargs = {})JY
+pkg.torch.onnx.name_scopes;['', 'layer1', 'layer1.0', 'layer1.0.activation', 'relu_2']JÍ
+pkg.torch.onnx.stack_traceÀFile "/Users/I585008/gen_onnx.py", line 83, in forward
+    x = self.layer1(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 54, in forward
+    out = self.activation(out)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 144, in forward
+    return F.relu(input, inplace=self.inplace)
+©
+
+relu_2
+layer1.1.conv1.weight
+val_5conv2d_3node_conv2d_3"Conv*
+group†*
+pads@@@@†*
+strides@@†*
+auto_pad"NOTSET†*
+	dilations@@†J∂
+	namespace®: __main__.ResNet/layer1: torch.nn.modules.container.Sequential/layer1.1: __main__.BasicBlock/layer1.1.conv1: torch.nn.modules.conv.Conv2d/conv2d_3: aten.conv2d.defaultJ≠
+pkg.torch.onnx.class_hierarchyä['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']Jπ
+pkg.torch.onnx.fx_nodeû%conv2d_3 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%relu_2, %p_layer1_1_conv1_weight, None, [1, 1], [1, 1]), kwargs = {})JV
+pkg.torch.onnx.name_scopes8['', 'layer1', 'layer1.1', 'layer1.1.conv1', 'conv2d_3']JÜ
+pkg.torch.onnx.stack_traceÁFile "/Users/I585008/gen_onnx.py", line 83, in forward
+    x = self.layer1(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+œ
+conv2d_3
+layer1.1.bn1.weight
+layer1.1.bn1.bias
+layer1.1.bn1.running_mean
+layer1.1.bn1.running_var	getitem_9.node__native_batch_norm_legit_no_training_3__0"BatchNormalization*
+momentumfff?†*
+epsilon¨≈'7†J˙
+	namespaceÏ: __main__.ResNet/layer1: torch.nn.modules.container.Sequential/layer1.1: __main__.BasicBlock/layer1.1.bn1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_3: aten._native_batch_norm_legit_no_training.defaultJ’
+pkg.torch.onnx.class_hierarchy≤['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jº
+pkg.torch.onnx.fx_node°%_native_batch_norm_legit_no_training_3 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_3, %p_layer1_1_bn1_weight, %p_layer1_1_bn1_bias, %b_layer1_1_bn1_running_mean, %b_layer1_1_bn1_running_var, 0.1, 1e-05), kwargs = {})Jr
+pkg.torch.onnx.name_scopesT['', 'layer1', 'layer1.1', 'layer1.1.bn1', '_native_batch_norm_legit_no_training_3']JÁ
+pkg.torch.onnx.stack_trace»File "/Users/I585008/gen_onnx.py", line 83, in forward
+    x = self.layer1(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+˝
+	getitem_9relu_3node_relu_3"ReluJª
+	namespace≠: __main__.ResNet/layer1: torch.nn.modules.container.Sequential/layer1.1: __main__.BasicBlock/layer1.1.activation: torch.nn.modules.activation.ReLU/relu_3: aten.relu.defaultJØ
+pkg.torch.onnx.class_hierarchyå['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']Jà
+pkg.torch.onnx.fx_noden%relu_3 : [num_users=1] = call_function[target=torch.ops.aten.relu.default](args = (%getitem_9,), kwargs = {})JY
+pkg.torch.onnx.name_scopes;['', 'layer1', 'layer1.1', 'layer1.1.activation', 'relu_3']J˛
+pkg.torch.onnx.stack_traceﬂFile "/Users/I585008/gen_onnx.py", line 83, in forward
+    x = self.layer1(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 144, in forward
+    return F.relu(input, inplace=self.inplace)
+ö
+
+relu_3
+layer1.1.conv2.weight
+val_5conv2d_4node_conv2d_4"Conv*
+group†*
+pads@@@@†*
+strides@@†*
+auto_pad"NOTSET†*
+	dilations@@†J∂
+	namespace®: __main__.ResNet/layer1: torch.nn.modules.container.Sequential/layer1.1: __main__.BasicBlock/layer1.1.conv2: torch.nn.modules.conv.Conv2d/conv2d_4: aten.conv2d.defaultJ≠
+pkg.torch.onnx.class_hierarchyä['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']Jπ
+pkg.torch.onnx.fx_nodeû%conv2d_4 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%relu_3, %p_layer1_1_conv2_weight, None, [1, 1], [1, 1]), kwargs = {})JV
+pkg.torch.onnx.name_scopes8['', 'layer1', 'layer1.1', 'layer1.1.conv2', 'conv2d_4']J˜
+pkg.torch.onnx.stack_traceÿFile "/Users/I585008/gen_onnx.py", line 83, in forward
+    x = self.layer1(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 52, in forward
+    out = self.bn2(self.conv2(out))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+¡
+conv2d_4
+layer1.1.bn2.weight
+layer1.1.bn2.bias
+layer1.1.bn2.running_mean
+layer1.1.bn2.running_var
+getitem_12.node__native_batch_norm_legit_no_training_4__0"BatchNormalization*
+momentumfff?†*
+epsilon¨≈'7†J˙
+	namespaceÏ: __main__.ResNet/layer1: torch.nn.modules.container.Sequential/layer1.1: __main__.BasicBlock/layer1.1.bn2: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_4: aten._native_batch_norm_legit_no_training.defaultJ’
+pkg.torch.onnx.class_hierarchy≤['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jº
+pkg.torch.onnx.fx_node°%_native_batch_norm_legit_no_training_4 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_4, %p_layer1_1_bn2_weight, %p_layer1_1_bn2_bias, %b_layer1_1_bn2_running_mean, %b_layer1_1_bn2_running_var, 0.1, 1e-05), kwargs = {})Jr
+pkg.torch.onnx.name_scopesT['', 'layer1', 'layer1.1', 'layer1.1.bn2', '_native_batch_norm_legit_no_training_4']Jÿ
+pkg.torch.onnx.stack_traceπFile "/Users/I585008/gen_onnx.py", line 83, in forward
+    x = self.layer1(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 52, in forward
+    out = self.bn2(self.conv2(out))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+€
+
+getitem_12
+relu_2add_6
+node_add_6"AddJÅ
+	namespacet: __main__.ResNet/layer1: torch.nn.modules.container.Sequential/layer1.1: __main__.BasicBlock/add_6: aten.add.TensorJà
+pkg.torch.onnx.class_hierarchyf['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'aten.add.Tensor']Jé
+pkg.torch.onnx.fx_nodet%add_6 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%getitem_12, %relu_2), kwargs = {})JA
+pkg.torch.onnx.name_scopes#['', 'layer1', 'layer1.1', 'add_6']J…
+pkg.torch.onnx.stack_trace™File "/Users/I585008/gen_onnx.py", line 83, in forward
+    x = self.layer1(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 53, in forward
+    out += self.shortcut(x)
+·
+add_6relu_4node_relu_4"ReluJª
+	namespace≠: __main__.ResNet/layer1: torch.nn.modules.container.Sequential/layer1.1: __main__.BasicBlock/layer1.1.activation: torch.nn.modules.activation.ReLU/relu_4: aten.relu.defaultJØ
+pkg.torch.onnx.class_hierarchyå['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']JÑ
+pkg.torch.onnx.fx_nodej%relu_4 : [num_users=2] = call_function[target=torch.ops.aten.relu.default](args = (%add_6,), kwargs = {})JY
+pkg.torch.onnx.name_scopes;['', 'layer1', 'layer1.1', 'layer1.1.activation', 'relu_4']JÍ
+pkg.torch.onnx.stack_traceÀFile "/Users/I585008/gen_onnx.py", line 83, in forward
+    x = self.layer1(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 54, in forward
+    out = self.activation(out)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 144, in forward
+    return F.relu(input, inplace=self.inplace)
+™
+
+relu_4
+layer2.0.conv1.weight
+val_52conv2d_5node_conv2d_5"Conv*
+group†*
+pads@@@@†*
+strides@@†*
+auto_pad"NOTSET†*
+	dilations@@†J∂
+	namespace®: __main__.ResNet/layer2: torch.nn.modules.container.Sequential/layer2.0: __main__.BasicBlock/layer2.0.conv1: torch.nn.modules.conv.Conv2d/conv2d_5: aten.conv2d.defaultJ≠
+pkg.torch.onnx.class_hierarchyä['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']Jπ
+pkg.torch.onnx.fx_nodeû%conv2d_5 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%relu_4, %p_layer2_0_conv1_weight, None, [2, 2], [1, 1]), kwargs = {})JV
+pkg.torch.onnx.name_scopes8['', 'layer2', 'layer2.0', 'layer2.0.conv1', 'conv2d_5']JÜ
+pkg.torch.onnx.stack_traceÁFile "/Users/I585008/gen_onnx.py", line 84, in forward
+    x = self.layer2(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+–
+conv2d_5
+layer2.0.bn1.weight
+layer2.0.bn1.bias
+layer2.0.bn1.running_mean
+layer2.0.bn1.running_var
+getitem_15.node__native_batch_norm_legit_no_training_5__0"BatchNormalization*
+momentumfff?†*
+epsilon¨≈'7†J˙
+	namespaceÏ: __main__.ResNet/layer2: torch.nn.modules.container.Sequential/layer2.0: __main__.BasicBlock/layer2.0.bn1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_5: aten._native_batch_norm_legit_no_training.defaultJ’
+pkg.torch.onnx.class_hierarchy≤['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jº
+pkg.torch.onnx.fx_node°%_native_batch_norm_legit_no_training_5 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_5, %p_layer2_0_bn1_weight, %p_layer2_0_bn1_bias, %b_layer2_0_bn1_running_mean, %b_layer2_0_bn1_running_var, 0.1, 1e-05), kwargs = {})Jr
+pkg.torch.onnx.name_scopesT['', 'layer2', 'layer2.0', 'layer2.0.bn1', '_native_batch_norm_legit_no_training_5']JÁ
+pkg.torch.onnx.stack_trace»File "/Users/I585008/gen_onnx.py", line 84, in forward
+    x = self.layer2(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+ˇ
+
+getitem_15relu_5node_relu_5"ReluJª
+	namespace≠: __main__.ResNet/layer2: torch.nn.modules.container.Sequential/layer2.0: __main__.BasicBlock/layer2.0.activation: torch.nn.modules.activation.ReLU/relu_5: aten.relu.defaultJØ
+pkg.torch.onnx.class_hierarchyå['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']Jâ
+pkg.torch.onnx.fx_nodeo%relu_5 : [num_users=1] = call_function[target=torch.ops.aten.relu.default](args = (%getitem_15,), kwargs = {})JY
+pkg.torch.onnx.name_scopes;['', 'layer2', 'layer2.0', 'layer2.0.activation', 'relu_5']J˛
+pkg.torch.onnx.stack_traceﬂFile "/Users/I585008/gen_onnx.py", line 84, in forward
+    x = self.layer2(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 144, in forward
+    return F.relu(input, inplace=self.inplace)
+õ
+
+relu_5
+layer2.0.conv2.weight
+val_52conv2d_6node_conv2d_6"Conv*
+group†*
+pads@@@@†*
+strides@@†*
+auto_pad"NOTSET†*
+	dilations@@†J∂
+	namespace®: __main__.ResNet/layer2: torch.nn.modules.container.Sequential/layer2.0: __main__.BasicBlock/layer2.0.conv2: torch.nn.modules.conv.Conv2d/conv2d_6: aten.conv2d.defaultJ≠
+pkg.torch.onnx.class_hierarchyä['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']Jπ
+pkg.torch.onnx.fx_nodeû%conv2d_6 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%relu_5, %p_layer2_0_conv2_weight, None, [1, 1], [1, 1]), kwargs = {})JV
+pkg.torch.onnx.name_scopes8['', 'layer2', 'layer2.0', 'layer2.0.conv2', 'conv2d_6']J˜
+pkg.torch.onnx.stack_traceÿFile "/Users/I585008/gen_onnx.py", line 84, in forward
+    x = self.layer2(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 52, in forward
+    out = self.bn2(self.conv2(out))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+¡
+conv2d_6
+layer2.0.bn2.weight
+layer2.0.bn2.bias
+layer2.0.bn2.running_mean
+layer2.0.bn2.running_var
+getitem_18.node__native_batch_norm_legit_no_training_6__0"BatchNormalization*
+momentumfff?†*
+epsilon¨≈'7†J˙
+	namespaceÏ: __main__.ResNet/layer2: torch.nn.modules.container.Sequential/layer2.0: __main__.BasicBlock/layer2.0.bn2: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_6: aten._native_batch_norm_legit_no_training.defaultJ’
+pkg.torch.onnx.class_hierarchy≤['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jº
+pkg.torch.onnx.fx_node°%_native_batch_norm_legit_no_training_6 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_6, %p_layer2_0_bn2_weight, %p_layer2_0_bn2_bias, %b_layer2_0_bn2_running_mean, %b_layer2_0_bn2_running_var, 0.1, 1e-05), kwargs = {})Jr
+pkg.torch.onnx.name_scopesT['', 'layer2', 'layer2.0', 'layer2.0.bn2', '_native_batch_norm_legit_no_training_6']Jÿ
+pkg.torch.onnx.stack_traceπFile "/Users/I585008/gen_onnx.py", line 84, in forward
+    x = self.layer2(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 52, in forward
+    out = self.bn2(self.conv2(out))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+û
+relu_4
+layer2.0.shortcut.0.weight
+val_52conv2d_7node_conv2d_7"Conv*
+group†*
+pads@ @ @ @ †*
+strides@@†*
+auto_pad"NOTSET†*
+	dilations@@†JÙ
+	namespaceÊ: __main__.ResNet/layer2: torch.nn.modules.container.Sequential/layer2.0: __main__.BasicBlock/layer2.0.shortcut: torch.nn.modules.container.Sequential/layer2.0.shortcut.0: torch.nn.modules.conv.Conv2d/conv2d_7: aten.conv2d.defaultJ÷
+pkg.torch.onnx.class_hierarchy≥['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J∂
+pkg.torch.onnx.fx_nodeõ%conv2d_7 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%relu_4, %p_layer2_0_shortcut_0_weight, None, [2, 2]), kwargs = {})Jp
+pkg.torch.onnx.name_scopesR['', 'layer2', 'layer2.0', 'layer2.0.shortcut', 'layer2.0.shortcut.0', 'conv2d_7']J˜
+pkg.torch.onnx.stack_traceÿFile "/Users/I585008/gen_onnx.py", line 84, in forward
+    x = self.layer2(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 53, in forward
+    out += self.shortcut(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+¯
+conv2d_7
+layer2.0.shortcut.1.weight
+layer2.0.bn2.bias
+ layer2.0.shortcut.1.running_mean
+layer2.0.shortcut.1.running_var
+getitem_21.node__native_batch_norm_legit_no_training_7__0"BatchNormalization*
+momentumfff?†*
+epsilon¨≈'7†J∫
+	namespace¨: __main__.ResNet/layer2: torch.nn.modules.container.Sequential/layer2.0: __main__.BasicBlock/layer2.0.shortcut: torch.nn.modules.container.Sequential/layer2.0.shortcut.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_7: aten._native_batch_norm_legit_no_training.defaultJ˛
+pkg.torch.onnx.class_hierarchy€['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jÿ
+pkg.torch.onnx.fx_nodeΩ%_native_batch_norm_legit_no_training_7 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_7, %p_layer2_0_shortcut_1_weight, %p_layer2_0_shortcut_1_bias, %b_layer2_0_shortcut_1_running_mean, %b_layer2_0_shortcut_1_running_var, 0.1, 1e-05), kwargs = {})Jé
+pkg.torch.onnx.name_scopesp['', 'layer2', 'layer2.0', 'layer2.0.shortcut', 'layer2.0.shortcut.1', '_native_batch_norm_legit_no_training_7']Jÿ
+pkg.torch.onnx.stack_traceπFile "/Users/I585008/gen_onnx.py", line 84, in forward
+    x = self.layer2(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 53, in forward
+    out += self.shortcut(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+„
+
+getitem_18
+
+getitem_21add_7
+node_add_7"AddJÅ
+	namespacet: __main__.ResNet/layer2: torch.nn.modules.container.Sequential/layer2.0: __main__.BasicBlock/add_7: aten.add.TensorJà
+pkg.torch.onnx.class_hierarchyf['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'aten.add.Tensor']Jí
+pkg.torch.onnx.fx_nodex%add_7 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%getitem_18, %getitem_21), kwargs = {})JA
+pkg.torch.onnx.name_scopes#['', 'layer2', 'layer2.0', 'add_7']J…
+pkg.torch.onnx.stack_trace™File "/Users/I585008/gen_onnx.py", line 84, in forward
+    x = self.layer2(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 53, in forward
+    out += self.shortcut(x)
+·
+add_7relu_6node_relu_6"ReluJª
+	namespace≠: __main__.ResNet/layer2: torch.nn.modules.container.Sequential/layer2.0: __main__.BasicBlock/layer2.0.activation: torch.nn.modules.activation.ReLU/relu_6: aten.relu.defaultJØ
+pkg.torch.onnx.class_hierarchyå['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']JÑ
+pkg.torch.onnx.fx_nodej%relu_6 : [num_users=2] = call_function[target=torch.ops.aten.relu.default](args = (%add_7,), kwargs = {})JY
+pkg.torch.onnx.name_scopes;['', 'layer2', 'layer2.0', 'layer2.0.activation', 'relu_6']JÍ
+pkg.torch.onnx.stack_traceÀFile "/Users/I585008/gen_onnx.py", line 84, in forward
+    x = self.layer2(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 54, in forward
+    out = self.activation(out)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 144, in forward
+    return F.relu(input, inplace=self.inplace)
+™
+
+relu_6
+layer2.1.conv1.weight
+val_52conv2d_8node_conv2d_8"Conv*
+group†*
+pads@@@@†*
+strides@@†*
+auto_pad"NOTSET†*
+	dilations@@†J∂
+	namespace®: __main__.ResNet/layer2: torch.nn.modules.container.Sequential/layer2.1: __main__.BasicBlock/layer2.1.conv1: torch.nn.modules.conv.Conv2d/conv2d_8: aten.conv2d.defaultJ≠
+pkg.torch.onnx.class_hierarchyä['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']Jπ
+pkg.torch.onnx.fx_nodeû%conv2d_8 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%relu_6, %p_layer2_1_conv1_weight, None, [1, 1], [1, 1]), kwargs = {})JV
+pkg.torch.onnx.name_scopes8['', 'layer2', 'layer2.1', 'layer2.1.conv1', 'conv2d_8']JÜ
+pkg.torch.onnx.stack_traceÁFile "/Users/I585008/gen_onnx.py", line 84, in forward
+    x = self.layer2(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+–
+conv2d_8
+layer2.1.bn1.weight
+layer2.1.bn1.bias
+layer2.1.bn1.running_mean
+layer2.1.bn1.running_var
+getitem_24.node__native_batch_norm_legit_no_training_8__0"BatchNormalization*
+momentumfff?†*
+epsilon¨≈'7†J˙
+	namespaceÏ: __main__.ResNet/layer2: torch.nn.modules.container.Sequential/layer2.1: __main__.BasicBlock/layer2.1.bn1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_8: aten._native_batch_norm_legit_no_training.defaultJ’
+pkg.torch.onnx.class_hierarchy≤['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jº
+pkg.torch.onnx.fx_node°%_native_batch_norm_legit_no_training_8 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_8, %p_layer2_1_bn1_weight, %p_layer2_1_bn1_bias, %b_layer2_1_bn1_running_mean, %b_layer2_1_bn1_running_var, 0.1, 1e-05), kwargs = {})Jr
+pkg.torch.onnx.name_scopesT['', 'layer2', 'layer2.1', 'layer2.1.bn1', '_native_batch_norm_legit_no_training_8']JÁ
+pkg.torch.onnx.stack_trace»File "/Users/I585008/gen_onnx.py", line 84, in forward
+    x = self.layer2(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+ˇ
+
+getitem_24relu_7node_relu_7"ReluJª
+	namespace≠: __main__.ResNet/layer2: torch.nn.modules.container.Sequential/layer2.1: __main__.BasicBlock/layer2.1.activation: torch.nn.modules.activation.ReLU/relu_7: aten.relu.defaultJØ
+pkg.torch.onnx.class_hierarchyå['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']Jâ
+pkg.torch.onnx.fx_nodeo%relu_7 : [num_users=1] = call_function[target=torch.ops.aten.relu.default](args = (%getitem_24,), kwargs = {})JY
+pkg.torch.onnx.name_scopes;['', 'layer2', 'layer2.1', 'layer2.1.activation', 'relu_7']J˛
+pkg.torch.onnx.stack_traceﬂFile "/Users/I585008/gen_onnx.py", line 84, in forward
+    x = self.layer2(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 144, in forward
+    return F.relu(input, inplace=self.inplace)
+õ
+
+relu_7
+layer2.1.conv2.weight
+val_52conv2d_9node_conv2d_9"Conv*
+group†*
+pads@@@@†*
+strides@@†*
+auto_pad"NOTSET†*
+	dilations@@†J∂
+	namespace®: __main__.ResNet/layer2: torch.nn.modules.container.Sequential/layer2.1: __main__.BasicBlock/layer2.1.conv2: torch.nn.modules.conv.Conv2d/conv2d_9: aten.conv2d.defaultJ≠
+pkg.torch.onnx.class_hierarchyä['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']Jπ
+pkg.torch.onnx.fx_nodeû%conv2d_9 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%relu_7, %p_layer2_1_conv2_weight, None, [1, 1], [1, 1]), kwargs = {})JV
+pkg.torch.onnx.name_scopes8['', 'layer2', 'layer2.1', 'layer2.1.conv2', 'conv2d_9']J˜
+pkg.torch.onnx.stack_traceÿFile "/Users/I585008/gen_onnx.py", line 84, in forward
+    x = self.layer2(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 52, in forward
+    out = self.bn2(self.conv2(out))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+¡
+conv2d_9
+layer2.1.bn2.weight
+layer2.1.bn2.bias
+layer2.1.bn2.running_mean
+layer2.1.bn2.running_var
+getitem_27.node__native_batch_norm_legit_no_training_9__0"BatchNormalization*
+momentumfff?†*
+epsilon¨≈'7†J˙
+	namespaceÏ: __main__.ResNet/layer2: torch.nn.modules.container.Sequential/layer2.1: __main__.BasicBlock/layer2.1.bn2: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_9: aten._native_batch_norm_legit_no_training.defaultJ’
+pkg.torch.onnx.class_hierarchy≤['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jº
+pkg.torch.onnx.fx_node°%_native_batch_norm_legit_no_training_9 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_9, %p_layer2_1_bn2_weight, %p_layer2_1_bn2_bias, %b_layer2_1_bn2_running_mean, %b_layer2_1_bn2_running_var, 0.1, 1e-05), kwargs = {})Jr
+pkg.torch.onnx.name_scopesT['', 'layer2', 'layer2.1', 'layer2.1.bn2', '_native_batch_norm_legit_no_training_9']Jÿ
+pkg.torch.onnx.stack_traceπFile "/Users/I585008/gen_onnx.py", line 84, in forward
+    x = self.layer2(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 52, in forward
+    out = self.bn2(self.conv2(out))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+€
+
+getitem_27
+relu_6add_8
+node_add_8"AddJÅ
+	namespacet: __main__.ResNet/layer2: torch.nn.modules.container.Sequential/layer2.1: __main__.BasicBlock/add_8: aten.add.TensorJà
+pkg.torch.onnx.class_hierarchyf['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'aten.add.Tensor']Jé
+pkg.torch.onnx.fx_nodet%add_8 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%getitem_27, %relu_6), kwargs = {})JA
+pkg.torch.onnx.name_scopes#['', 'layer2', 'layer2.1', 'add_8']J…
+pkg.torch.onnx.stack_trace™File "/Users/I585008/gen_onnx.py", line 84, in forward
+    x = self.layer2(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 53, in forward
+    out += self.shortcut(x)
+·
+add_8relu_8node_relu_8"ReluJª
+	namespace≠: __main__.ResNet/layer2: torch.nn.modules.container.Sequential/layer2.1: __main__.BasicBlock/layer2.1.activation: torch.nn.modules.activation.ReLU/relu_8: aten.relu.defaultJØ
+pkg.torch.onnx.class_hierarchyå['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']JÑ
+pkg.torch.onnx.fx_nodej%relu_8 : [num_users=2] = call_function[target=torch.ops.aten.relu.default](args = (%add_8,), kwargs = {})JY
+pkg.torch.onnx.name_scopes;['', 'layer2', 'layer2.1', 'layer2.1.activation', 'relu_8']JÍ
+pkg.torch.onnx.stack_traceÀFile "/Users/I585008/gen_onnx.py", line 84, in forward
+    x = self.layer2(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 54, in forward
+    out = self.activation(out)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 144, in forward
+    return F.relu(input, inplace=self.inplace)
+Ø
+
+relu_8
+layer3.0.conv1.weight
+val_97	conv2d_10node_conv2d_10"Conv*
+group†*
+pads@@@@†*
+strides@@†*
+auto_pad"NOTSET†*
+	dilations@@†J∑
+	namespace©: __main__.ResNet/layer3: torch.nn.modules.container.Sequential/layer3.0: __main__.BasicBlock/layer3.0.conv1: torch.nn.modules.conv.Conv2d/conv2d_10: aten.conv2d.defaultJ≠
+pkg.torch.onnx.class_hierarchyä['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J∫
+pkg.torch.onnx.fx_nodeü%conv2d_10 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%relu_8, %p_layer3_0_conv1_weight, None, [2, 2], [1, 1]), kwargs = {})JW
+pkg.torch.onnx.name_scopes9['', 'layer3', 'layer3.0', 'layer3.0.conv1', 'conv2d_10']JÜ
+pkg.torch.onnx.stack_traceÁFile "/Users/I585008/gen_onnx.py", line 85, in forward
+    x = self.layer3(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+÷
+	conv2d_10
+layer3.0.bn1.weight
+layer3.0.bn1.bias
+layer3.0.bn1.running_mean
+layer3.0.bn1.running_var
+getitem_30/node__native_batch_norm_legit_no_training_10__0"BatchNormalization*
+momentumfff?†*
+epsilon¨≈'7†J˚
+	namespaceÌ: __main__.ResNet/layer3: torch.nn.modules.container.Sequential/layer3.0: __main__.BasicBlock/layer3.0.bn1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_10: aten._native_batch_norm_legit_no_training.defaultJ’
+pkg.torch.onnx.class_hierarchy≤['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jæ
+pkg.torch.onnx.fx_node£%_native_batch_norm_legit_no_training_10 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_10, %p_layer3_0_bn1_weight, %p_layer3_0_bn1_bias, %b_layer3_0_bn1_running_mean, %b_layer3_0_bn1_running_var, 0.1, 1e-05), kwargs = {})Js
+pkg.torch.onnx.name_scopesU['', 'layer3', 'layer3.0', 'layer3.0.bn1', '_native_batch_norm_legit_no_training_10']JÁ
+pkg.torch.onnx.stack_trace»File "/Users/I585008/gen_onnx.py", line 85, in forward
+    x = self.layer3(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+ˇ
+
+getitem_30relu_9node_relu_9"ReluJª
+	namespace≠: __main__.ResNet/layer3: torch.nn.modules.container.Sequential/layer3.0: __main__.BasicBlock/layer3.0.activation: torch.nn.modules.activation.ReLU/relu_9: aten.relu.defaultJØ
+pkg.torch.onnx.class_hierarchyå['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']Jâ
+pkg.torch.onnx.fx_nodeo%relu_9 : [num_users=1] = call_function[target=torch.ops.aten.relu.default](args = (%getitem_30,), kwargs = {})JY
+pkg.torch.onnx.name_scopes;['', 'layer3', 'layer3.0', 'layer3.0.activation', 'relu_9']J˛
+pkg.torch.onnx.stack_traceﬂFile "/Users/I585008/gen_onnx.py", line 85, in forward
+    x = self.layer3(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 144, in forward
+    return F.relu(input, inplace=self.inplace)
+†
+
+relu_9
+layer3.0.conv2.weight
+val_97	conv2d_11node_conv2d_11"Conv*
+group†*
+pads@@@@†*
+strides@@†*
+auto_pad"NOTSET†*
+	dilations@@†J∑
+	namespace©: __main__.ResNet/layer3: torch.nn.modules.container.Sequential/layer3.0: __main__.BasicBlock/layer3.0.conv2: torch.nn.modules.conv.Conv2d/conv2d_11: aten.conv2d.defaultJ≠
+pkg.torch.onnx.class_hierarchyä['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J∫
+pkg.torch.onnx.fx_nodeü%conv2d_11 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%relu_9, %p_layer3_0_conv2_weight, None, [1, 1], [1, 1]), kwargs = {})JW
+pkg.torch.onnx.name_scopes9['', 'layer3', 'layer3.0', 'layer3.0.conv2', 'conv2d_11']J˜
+pkg.torch.onnx.stack_traceÿFile "/Users/I585008/gen_onnx.py", line 85, in forward
+    x = self.layer3(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 52, in forward
+    out = self.bn2(self.conv2(out))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+«
+	conv2d_11
+layer3.0.bn2.weight
+layer3.0.bn2.bias
+layer3.0.bn2.running_mean
+layer3.0.bn2.running_var
+getitem_33/node__native_batch_norm_legit_no_training_11__0"BatchNormalization*
+momentumfff?†*
+epsilon¨≈'7†J˚
+	namespaceÌ: __main__.ResNet/layer3: torch.nn.modules.container.Sequential/layer3.0: __main__.BasicBlock/layer3.0.bn2: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_11: aten._native_batch_norm_legit_no_training.defaultJ’
+pkg.torch.onnx.class_hierarchy≤['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jæ
+pkg.torch.onnx.fx_node£%_native_batch_norm_legit_no_training_11 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_11, %p_layer3_0_bn2_weight, %p_layer3_0_bn2_bias, %b_layer3_0_bn2_running_mean, %b_layer3_0_bn2_running_var, 0.1, 1e-05), kwargs = {})Js
+pkg.torch.onnx.name_scopesU['', 'layer3', 'layer3.0', 'layer3.0.bn2', '_native_batch_norm_legit_no_training_11']Jÿ
+pkg.torch.onnx.stack_traceπFile "/Users/I585008/gen_onnx.py", line 85, in forward
+    x = self.layer3(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 52, in forward
+    out = self.bn2(self.conv2(out))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+£
+relu_8
+layer3.0.shortcut.0.weight
+val_97	conv2d_12node_conv2d_12"Conv*
+group†*
+pads@ @ @ @ †*
+strides@@†*
+auto_pad"NOTSET†*
+	dilations@@†Jı
+	namespaceÁ: __main__.ResNet/layer3: torch.nn.modules.container.Sequential/layer3.0: __main__.BasicBlock/layer3.0.shortcut: torch.nn.modules.container.Sequential/layer3.0.shortcut.0: torch.nn.modules.conv.Conv2d/conv2d_12: aten.conv2d.defaultJ÷
+pkg.torch.onnx.class_hierarchy≥['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J∑
+pkg.torch.onnx.fx_nodeú%conv2d_12 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%relu_8, %p_layer3_0_shortcut_0_weight, None, [2, 2]), kwargs = {})Jq
+pkg.torch.onnx.name_scopesS['', 'layer3', 'layer3.0', 'layer3.0.shortcut', 'layer3.0.shortcut.0', 'conv2d_12']J˜
+pkg.torch.onnx.stack_traceÿFile "/Users/I585008/gen_onnx.py", line 85, in forward
+    x = self.layer3(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 53, in forward
+    out += self.shortcut(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+˛
+	conv2d_12
+layer3.0.shortcut.1.weight
+layer3.0.bn2.bias
+ layer3.0.shortcut.1.running_mean
+layer3.0.shortcut.1.running_var
+getitem_36/node__native_batch_norm_legit_no_training_12__0"BatchNormalization*
+momentumfff?†*
+epsilon¨≈'7†Jª
+	namespace≠: __main__.ResNet/layer3: torch.nn.modules.container.Sequential/layer3.0: __main__.BasicBlock/layer3.0.shortcut: torch.nn.modules.container.Sequential/layer3.0.shortcut.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_12: aten._native_batch_norm_legit_no_training.defaultJ˛
+pkg.torch.onnx.class_hierarchy€['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J⁄
+pkg.torch.onnx.fx_nodeø%_native_batch_norm_legit_no_training_12 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_12, %p_layer3_0_shortcut_1_weight, %p_layer3_0_shortcut_1_bias, %b_layer3_0_shortcut_1_running_mean, %b_layer3_0_shortcut_1_running_var, 0.1, 1e-05), kwargs = {})Jè
+pkg.torch.onnx.name_scopesq['', 'layer3', 'layer3.0', 'layer3.0.shortcut', 'layer3.0.shortcut.1', '_native_batch_norm_legit_no_training_12']Jÿ
+pkg.torch.onnx.stack_traceπFile "/Users/I585008/gen_onnx.py", line 85, in forward
+    x = self.layer3(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 53, in forward
+    out += self.shortcut(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+„
+
+getitem_33
+
+getitem_36add_9
+node_add_9"AddJÅ
+	namespacet: __main__.ResNet/layer3: torch.nn.modules.container.Sequential/layer3.0: __main__.BasicBlock/add_9: aten.add.TensorJà
+pkg.torch.onnx.class_hierarchyf['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'aten.add.Tensor']Jí
+pkg.torch.onnx.fx_nodex%add_9 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%getitem_33, %getitem_36), kwargs = {})JA
+pkg.torch.onnx.name_scopes#['', 'layer3', 'layer3.0', 'add_9']J…
+pkg.torch.onnx.stack_trace™File "/Users/I585008/gen_onnx.py", line 85, in forward
+    x = self.layer3(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 53, in forward
+    out += self.shortcut(x)
+Ê
+add_9relu_10node_relu_10"ReluJº
+	namespaceÆ: __main__.ResNet/layer3: torch.nn.modules.container.Sequential/layer3.0: __main__.BasicBlock/layer3.0.activation: torch.nn.modules.activation.ReLU/relu_10: aten.relu.defaultJØ
+pkg.torch.onnx.class_hierarchyå['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']JÖ
+pkg.torch.onnx.fx_nodek%relu_10 : [num_users=2] = call_function[target=torch.ops.aten.relu.default](args = (%add_9,), kwargs = {})JZ
+pkg.torch.onnx.name_scopes<['', 'layer3', 'layer3.0', 'layer3.0.activation', 'relu_10']JÍ
+pkg.torch.onnx.stack_traceÀFile "/Users/I585008/gen_onnx.py", line 85, in forward
+    x = self.layer3(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 54, in forward
+    out = self.activation(out)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 144, in forward
+    return F.relu(input, inplace=self.inplace)
+±
+
+relu_10
+layer3.1.conv1.weight
+val_97	conv2d_13node_conv2d_13"Conv*
+group†*
+pads@@@@†*
+strides@@†*
+auto_pad"NOTSET†*
+	dilations@@†J∑
+	namespace©: __main__.ResNet/layer3: torch.nn.modules.container.Sequential/layer3.1: __main__.BasicBlock/layer3.1.conv1: torch.nn.modules.conv.Conv2d/conv2d_13: aten.conv2d.defaultJ≠
+pkg.torch.onnx.class_hierarchyä['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']Jª
+pkg.torch.onnx.fx_node†%conv2d_13 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%relu_10, %p_layer3_1_conv1_weight, None, [1, 1], [1, 1]), kwargs = {})JW
+pkg.torch.onnx.name_scopes9['', 'layer3', 'layer3.1', 'layer3.1.conv1', 'conv2d_13']JÜ
+pkg.torch.onnx.stack_traceÁFile "/Users/I585008/gen_onnx.py", line 85, in forward
+    x = self.layer3(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+÷
+	conv2d_13
+layer3.1.bn1.weight
+layer3.1.bn1.bias
+layer3.1.bn1.running_mean
+layer3.1.bn1.running_var
+getitem_39/node__native_batch_norm_legit_no_training_13__0"BatchNormalization*
+momentumfff?†*
+epsilon¨≈'7†J˚
+	namespaceÌ: __main__.ResNet/layer3: torch.nn.modules.container.Sequential/layer3.1: __main__.BasicBlock/layer3.1.bn1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_13: aten._native_batch_norm_legit_no_training.defaultJ’
+pkg.torch.onnx.class_hierarchy≤['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jæ
+pkg.torch.onnx.fx_node£%_native_batch_norm_legit_no_training_13 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_13, %p_layer3_1_bn1_weight, %p_layer3_1_bn1_bias, %b_layer3_1_bn1_running_mean, %b_layer3_1_bn1_running_var, 0.1, 1e-05), kwargs = {})Js
+pkg.torch.onnx.name_scopesU['', 'layer3', 'layer3.1', 'layer3.1.bn1', '_native_batch_norm_legit_no_training_13']JÁ
+pkg.torch.onnx.stack_trace»File "/Users/I585008/gen_onnx.py", line 85, in forward
+    x = self.layer3(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+Ñ	
+
+getitem_39relu_11node_relu_11"ReluJº
+	namespaceÆ: __main__.ResNet/layer3: torch.nn.modules.container.Sequential/layer3.1: __main__.BasicBlock/layer3.1.activation: torch.nn.modules.activation.ReLU/relu_11: aten.relu.defaultJØ
+pkg.torch.onnx.class_hierarchyå['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']Jä
+pkg.torch.onnx.fx_nodep%relu_11 : [num_users=1] = call_function[target=torch.ops.aten.relu.default](args = (%getitem_39,), kwargs = {})JZ
+pkg.torch.onnx.name_scopes<['', 'layer3', 'layer3.1', 'layer3.1.activation', 'relu_11']J˛
+pkg.torch.onnx.stack_traceﬂFile "/Users/I585008/gen_onnx.py", line 85, in forward
+    x = self.layer3(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 51, in forward
+    out = self.activation(self.bn1(self.conv1(x)))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 144, in forward
+    return F.relu(input, inplace=self.inplace)
+¢
+
+relu_11
+layer3.1.conv2.weight
+val_97	conv2d_14node_conv2d_14"Conv*
+group†*
+pads@@@@†*
+strides@@†*
+auto_pad"NOTSET†*
+	dilations@@†J∑
+	namespace©: __main__.ResNet/layer3: torch.nn.modules.container.Sequential/layer3.1: __main__.BasicBlock/layer3.1.conv2: torch.nn.modules.conv.Conv2d/conv2d_14: aten.conv2d.defaultJ≠
+pkg.torch.onnx.class_hierarchyä['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']Jª
+pkg.torch.onnx.fx_node†%conv2d_14 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%relu_11, %p_layer3_1_conv2_weight, None, [1, 1], [1, 1]), kwargs = {})JW
+pkg.torch.onnx.name_scopes9['', 'layer3', 'layer3.1', 'layer3.1.conv2', 'conv2d_14']J˜
+pkg.torch.onnx.stack_traceÿFile "/Users/I585008/gen_onnx.py", line 85, in forward
+    x = self.layer3(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 52, in forward
+    out = self.bn2(self.conv2(out))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+«
+	conv2d_14
+layer3.1.bn2.weight
+layer3.1.bn2.bias
+layer3.1.bn2.running_mean
+layer3.1.bn2.running_var
+getitem_42/node__native_batch_norm_legit_no_training_14__0"BatchNormalization*
+momentumfff?†*
+epsilon¨≈'7†J˚
+	namespaceÌ: __main__.ResNet/layer3: torch.nn.modules.container.Sequential/layer3.1: __main__.BasicBlock/layer3.1.bn2: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_14: aten._native_batch_norm_legit_no_training.defaultJ’
+pkg.torch.onnx.class_hierarchy≤['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']Jæ
+pkg.torch.onnx.fx_node£%_native_batch_norm_legit_no_training_14 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_14, %p_layer3_1_bn2_weight, %p_layer3_1_bn2_bias, %b_layer3_1_bn2_running_mean, %b_layer3_1_bn2_running_var, 0.1, 1e-05), kwargs = {})Js
+pkg.torch.onnx.name_scopesU['', 'layer3', 'layer3.1', 'layer3.1.bn2', '_native_batch_norm_legit_no_training_14']Jÿ
+pkg.torch.onnx.stack_traceπFile "/Users/I585008/gen_onnx.py", line 85, in forward
+    x = self.layer3(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 52, in forward
+    out = self.bn2(self.conv2(out))
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+‚
+
+getitem_42
+relu_10add_10node_add_10"AddJÇ
+	namespaceu: __main__.ResNet/layer3: torch.nn.modules.container.Sequential/layer3.1: __main__.BasicBlock/add_10: aten.add.TensorJà
+pkg.torch.onnx.class_hierarchyf['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'aten.add.Tensor']Jê
+pkg.torch.onnx.fx_nodev%add_10 : [num_users=1] = call_function[target=torch.ops.aten.add.Tensor](args = (%getitem_42, %relu_10), kwargs = {})JB
+pkg.torch.onnx.name_scopes$['', 'layer3', 'layer3.1', 'add_10']J…
+pkg.torch.onnx.stack_trace™File "/Users/I585008/gen_onnx.py", line 85, in forward
+    x = self.layer3(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 53, in forward
+    out += self.shortcut(x)
+Ë
+add_10relu_12node_relu_12"ReluJº
+	namespaceÆ: __main__.ResNet/layer3: torch.nn.modules.container.Sequential/layer3.1: __main__.BasicBlock/layer3.1.activation: torch.nn.modules.activation.ReLU/relu_12: aten.relu.defaultJØ
+pkg.torch.onnx.class_hierarchyå['__main__.ResNet', 'torch.nn.modules.container.Sequential', '__main__.BasicBlock', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']JÜ
+pkg.torch.onnx.fx_nodel%relu_12 : [num_users=1] = call_function[target=torch.ops.aten.relu.default](args = (%add_10,), kwargs = {})JZ
+pkg.torch.onnx.name_scopes<['', 'layer3', 'layer3.1', 'layer3.1.activation', 'relu_12']JÍ
+pkg.torch.onnx.stack_traceÀFile "/Users/I585008/gen_onnx.py", line 85, in forward
+    x = self.layer3(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/Users/I585008/gen_onnx.py", line 54, in forward
+    out = self.activation(out)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 144, in forward
+    return F.relu(input, inplace=self.inplace)
+õ
+relu_12
+val_140mean	node_mean"
+ReduceMean*
+noop_with_empty_axes †*
+keepdims†Jf
+	namespaceY: __main__.ResNet/avgpool: torch.nn.modules.pooling.AdaptiveAvgPool2d/mean: aten.mean.dimJt
+pkg.torch.onnx.class_hierarchyR['__main__.ResNet', 'torch.nn.modules.pooling.AdaptiveAvgPool2d', 'aten.mean.dim']Jè
+pkg.torch.onnx.fx_nodeu%mean : [num_users=1] = call_function[target=torch.ops.aten.mean.dim](args = (%relu_12, [-1, -2], True), kwargs = {})J5
+pkg.torch.onnx.name_scopes['', 'avgpool', 'mean']Jî
+pkg.torch.onnx.stack_traceıFile "/Users/I585008/gen_onnx.py", line 86, in forward
+    x = self.avgpool(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/pooling.py", line 1500, in forward
+    return F.adaptive_avg_pool2d(input, self.output_size)
+Í
+mean
+val_144view	node_view"Reshape*
+	allowzero†J6
+	namespace): __main__.ResNet/view: aten.view.defaultJJ
+pkg.torch.onnx.class_hierarchy(['__main__.ResNet', 'aten.view.default']Jä
+pkg.torch.onnx.fx_nodep%view : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%mean, [1, 256]), kwargs = {})J*
+pkg.torch.onnx.name_scopes['', 'view']Jp
+pkg.torch.onnx.stack_traceRFile "/Users/I585008/gen_onnx.py", line 87, in forward
+    x = torch.flatten(x, 1)
+¢
+view
+	fc.weight
+fc.biasoutputnode_linear"Gemm*
+beta  Ä?†*
+transB†*
+alpha  Ä?†*
+transA †J]
+	namespaceP: __main__.ResNet/fc: torch.nn.modules.linear.Linear/linear: aten.linear.defaultJn
+pkg.torch.onnx.class_hierarchyL['__main__.ResNet', 'torch.nn.modules.linear.Linear', 'aten.linear.default']Jü
+pkg.torch.onnx.fx_nodeÑ%linear : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%view, %p_fc_weight, %p_fc_bias), kwargs = {})J2
+pkg.torch.onnx.name_scopes['', 'fc', 'linear']JÜ
+pkg.torch.onnx.stack_traceÁFile "/Users/I585008/gen_onnx.py", line 89, in forward
+    x = self.fc(x)
+  File "/Users/I585008/venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
+    return F.linear(input, self.weight, self.bias)
+main_graph*ì@B
+bn1.weightJÄuÀº>≠è>4»>É∞>-~ß>™+ñ=nd>9R,?5?5¢≠>SÈ•>Om>¬v∏>©Ú,>ΩH>'ó™>]zµ>“ˇ¡>ﬁ´>;=ï>ïÊ√>¨áπ>-Ï;>¨¬∫>∑k#>‘Õ˚=Eìí=…1[>¨@^>”m(?9˙R<FŒe>o>Ñö?¡Lû>GÊ»=∑¢5>“HC?@\–>ŸÅ≥>∑ﬁm>ké= ‡<>d]>‰ô>øCÌ=≠ù=¬ Î>!É>∏k=â J>êÙπ>P≤⁄>NU§>Tf·>xëı>00s<˝6Õ>Ø¸>h∂‹=!m7>‡ÉÜ>àöî>p£O>*ë@Bbn1.biasJÄﬂŸ•=≤ÿ,æ\Æ≥ºöW>√Ä*>·sæz'æ˜7h?;t∫>Ô≥;æı/'=–Ω≥Åé>aÁ>sï√ΩºÍ4æ;!µΩnƒZ=ü“£æ¥í÷ºyßÉ=H¿ŒΩeFæîΩ>¨ßΩÌQ•ΩvÚ%æs >£:“Ω;?áùâΩæ?¯c=A;ö>Ú©I=≠£º(öÆ=ˇÿ†>/‘D>7’º>ó‡¨ΩicáΩ∆⁄æø˚=joÙΩõc¶=Z‘æD·è>ByFæÊ≠‡ΩV1ÔΩmS@>®†3>`U˚ª>6ë9>YüΩañ>{≠æ/ΩªNK‘ΩQ∂=È3Uæ„≤Ω*ú@Blayer1.0.bn1.weightJÄc≠?0c>Å·h>°Úé>]X>[?û®>ÃﬁÅ>ãdü>»k>6Ö{>amt>I,¨>∆¸Õ>/á◊>êD'>Á*?AvÆ>òÜ.>–ó>M3t>^qÍ>(´¢>√J?=7'?™d~>Òﬁ>Qfû>X>ºk>E¿â>ßÜ>Ÿ∫ç>;Œ>≈_>ÿÿq>Jæ#>•§>Ê_y>?x˜>?∆§>Û´">|é>ãH@>"ëÌ>CÃ´>Àì>3öC>jm>å]‹>ÎÖ>¢>Åp?|úô?só>VyÇ>kß?ÜÇ>˛Ç‰>_(>!‰s>⁄'>]î¶>Ç º>*ö@Blayer1.0.bn1.biasJÄÖ⁄GΩ\êæâ˘éΩí˜|ΩUR
+æõµΩÅ∏ùΩ˝æ¢´næÅcbΩ{æe:æ?…õ=l+ΩkΩ§ﬁ=â\>ß‹æLÁèº∏Ö1Ωm¸îºÀ“åΩ|‹ æ¡õ>ù˙rΩë±4æd4> mæÜª0<ÆëªΩr)Ω_yæ¢M5Ωèﬂ5æåûΩd+Ωcsæ=%FΩ|o@æ¯&æ&îeæ/ﬂ¯Ωı Ω¯æg5ræsø?æÚÒeæåÀæ≤îæÍ9ÈΩÅê¥Ω~ΩÖ¨ÏΩcæ√Ωüg$Ω úΩ:∆ΩD„ÖΩ75æsß5<p æL©Ωs≤Ω’W Ω*ú@Blayer1.0.bn2.weightJÄv"Ö>ó/d>∆£>ìÊ>Èù\>∆Yˇ>¿W>ôk™>≥vÆ>TM>)ZÇ>e9>∞ø§>¡ÙŸ>%>y>œä>Ar=lÜh>˚ß¡>In»>˚öñ>À¡E>d˘>?€ﬁ>ÉÉ?å>(LN>S5Ü>Ñgr>DùÂ>o ?7"+? Ÿ?∂??¨.?L(?JR?Ê+‹>ı*?Ï',>€ZÀ>€E‘>„PE>^·>˝ÿr>;ñ>¿£«>S…>M(Û>_6≤>[IW>ö'>ÿ4?
+˘Ø>kìQ>ÔB"?°ôÌ=k`l>’N„>§Àé>ç∑o?“Pä>ñˆ?*ö@Blayer1.0.bn2.biasJÄ§¬ÉΩ™≤◊;¿˛<uIÇæèFæÜBÜΩﬁTØΩ””ø®∑0æRÃΩ†}£<˘Ñ´ª¸.Næ}y=±"a;.]	Ω •Ωfu©=+ØÊΩ‰XΩæNJ>=!®ΩdêΩóGΩ9¬Ω≈h™ΩÜû=qπºn≈>æÿßÀ=RÔéΩ∂æ∫<ôzæ ⁄XæÓ+=w†\æÃÆæ{—=á5¸æŒ˙Ïºû*∫<mAΩÍüµ=`eh=ÉváªDìÑºh¶æó≈˝Ω€(Q=çü\=f±&æ˛ﬂæ î∑Ω≠zΩÖ˙®Ωúfæjãõæ±µΩ‹@=`ÜñΩ(î¥æÓï=2;>*ú@Blayer1.1.bn1.weightJÄ)◊#>Qá>,I>Â`>Ë∫>‚x^>ΩEx>	]>}⁄s>⁄}X>≥;>û¨>–…=Ä&_>=⁄>£™ù>
+>}†T>ˇÄ>Ñw>U>˝ïç>+Ô_>ZW>O¡2>„B>∫WO>ì8>¢ˆ&>tî>ıK>Ã@>Ç•<>n _>˘ID>Ñ/>˚íX>Å˘@>Iëù>Ù>ø¶>˙@>“s`>Çﬂ>ã_ˆ>k√°>Íá>‰£:>ÍÍ4>0J(>∂‡\>2®6>Wi´>;®˘=Õ)>∏+Ø>Uhb>>|lÇ>±àì>6´é>^nx>Kì>q>*ö@Blayer1.1.bn1.biasJÄV2ŒΩàA≠ΩX…Ωø<‡·ΩíÒæ”„’ΩÛÄæï∆æPµ”Ω«¬™Ωö˜ΩΩg®ºŸ˚÷Ω3p∞Ω]¬Oæß…Ω~ÊΩ⁄ÉÈΩTë¢Ωﬂ$ˇºÏÖCæp¶OΩfAªΩπ†ΩºL©Ωyƒ0æ9øŸΩÚ√ΩÌÙmΩ¬\âΩ˘ÀéΩ'€ΩŸ£ΩS∏⁄Ω}™¬Ω}—Ωªæ∑é5æp∂ºΩ^fƒΩ„∑„ΩcUæJüΩ÷uæs‡æˇ¡ˇΩññ¸ΩBtæo,æM÷ºZ––ΩùÿæÃÏúΩÀÇΩ¨˝Dæ∆I<ªjΩ∆3˛Ωß©ËΩ˘Ëæ°‘ÓΩ3¥[ΩòπΩ*ú@Blayer1.1.bn2.weightJÄAËÉ>ZÈÏ=Äb~>ç"g>ﬁój>Á◊c=4◊–=ÓÍ=ñùí>ò7ä=Úó¥=¶◊‘=I†>§	>U¯.>=◊∂=∂ä‚=ñ:X=['>®˛+>7E©>@·R>‹O>≠A>‹Ë>H‚>>ƒ∫y>cY)>Bº1>0ò>è<Ø=‚å>MÓ∞>≤f>™~>ÅÖ=c†±>NÒ<Íÿ>=Ö†>·B‚=Ñ>[/©=»Ä°=Ø6ó>£“˛=Â‡¬=∏6à>ôG>$¯û=5“>>èó˘=9z>`A∆=rxÅ>d–â>=>xˇï>Li>˚¨¨>µj9=1≤≤>Xl‰=hÂa>*ö@Blayer1.1.bn2.biasJÄj?+ºµßñ=\Áæº§√Ω!æ€Yë=8ò¡ºF øæPj†Ω1dLΩÒÚÚ=+éô<˜ıΩ=9lΩCå˙º6†BΩ(∫±=mÌ=D¡ºîhæúÜº/r<¯Iæπ≤ÔΩıBlΩÉ;æFGΩcâ;æÔ≠Ωì~Éæﬂ∏2‰âΩ%{sΩO aæ
+UæêΩ)ΩÀÁKæ∆¡ÅΩ,XΩµ°€Ωî¿Àº”=˜Õ Ω0∑(Ω⁄˜=Ú|^º}◊Œ<	Gæ QΩW!ü=Ã"
+Ω¬ß`ΩXÎæﬂäºû~˚ΩÑføΩáZΩÑDæQUΩNãï:ZÇbº´üæ^PÀ=L¢yΩ*^ÄBlayer2.0.bn1.weightj$
+locationbest_model_c03.onnx.dataj
+offset0j
+length512p*^ÄBlayer2.0.bn1.biasj$
+locationbest_model_c03.onnx.dataj
+offset512j
+length512p*aÄBlayer2.0.bn2.weightj$
+locationbest_model_c03.onnx.dataj
+offset1024j
+length512p*_ÄBlayer2.0.bn2.biasj$
+locationbest_model_c03.onnx.dataj
+offset1536j
+length512p*hÄBlayer2.0.shortcut.1.weightj$
+locationbest_model_c03.onnx.dataj
+offset2048j
+length512p*aÄBlayer2.1.bn1.weightj$
+locationbest_model_c03.onnx.dataj
+offset2560j
+length512p*_ÄBlayer2.1.bn1.biasj$
+locationbest_model_c03.onnx.dataj
+offset3072j
+length512p*aÄBlayer2.1.bn2.weightj$
+locationbest_model_c03.onnx.dataj
+offset3584j
+length512p*_ÄBlayer2.1.bn2.biasj$
+locationbest_model_c03.onnx.dataj
+offset4096j
+length512p*cÄBlayer3.0.bn1.weightj$
+locationbest_model_c03.onnx.dataj
+offset10240j
+length1024p*aÄBlayer3.0.bn1.biasj$
+locationbest_model_c03.onnx.dataj
+offset11264j
+length1024p*cÄBlayer3.0.bn2.weightj$
+locationbest_model_c03.onnx.dataj
+offset12288j
+length1024p*aÄBlayer3.0.bn2.biasj$
+locationbest_model_c03.onnx.dataj
+offset13312j
+length1024p*jÄBlayer3.0.shortcut.1.weightj$
+locationbest_model_c03.onnx.dataj
+offset14336j
+length1024p*cÄBlayer3.1.bn1.weightj$
+locationbest_model_c03.onnx.dataj
+offset15360j
+length1024p*aÄBlayer3.1.bn1.biasj$
+locationbest_model_c03.onnx.dataj
+offset16384j
+length1024p*cÄBlayer3.1.bn2.weightj$
+locationbest_model_c03.onnx.dataj
+offset17408j
+length1024p*aÄBlayer3.1.bn2.biasj$
+locationbest_model_c03.onnx.dataj
+offset18432j
+length1024p*7
+Bfc.biasJ(ÒE>ÖòæÕc>r∫s>öæ˜=<h æ˚d_ΩÃ’$=QNΩDÖzæ*ô@Bbn1.running_meanJÄÖ¯º«
+P>îºÙ w=ˆé0ºøÛ=¿j>NΩßé¨=r9>§ÂÆ=%+>±ˆΩ!É·ºîfŒ=s∏/>xqãΩúJ=¬SΩËÆü=#Ω =´åH>$ß˘=‚Csº*ƒó<‹€>àU>Ë–vº˙Ö'>¯KÅ=Œ–ïΩÔFﬁ=H\_º<nΩ∏©<Ï¸¯Ω5√,=Ø‰©ΩïRZºj∑ºû˚'>∫´Ω≠⁄—=ÏˆÕæPùL>á.oΩñ#Â=	©$ΩÓÉ>“L>•K =Ãoj=\Æ·;®>Á"°={’è<Ω‘¶<≈ZFΩ!ÊX>«¨•<€˚æ˛≠ô=ãﬂuæZéæ*ò@Bbn1.running_varJÄïG?º6K?XÜ?/ ?îF#@±ãu>…%W?‰H?ÓdÔ?VMD?#ˇ6?,˛>ò:?íY?øŒ>†K?ÕPÇ?Ÿöm?Ád*?/Z?˝jØ>Dπx?yîå>!@€ÇG>Îõ>O4?2¶?#ˆ>}â?ÎEÛ=W˜Á>Älä?oÿb@ ›Û?¡tZ?\a
+?,@≤äË?
+!·>≈‹?6)7>Y°W>⁄f)@Në*?di5?Üî\>m<é@s…„>¬Å'?¬ d>pÅ>@çg(@4AÂ?Ÿ™,@(?⁄>#ˆ>?âf6?ú˛>Ê†¶>ˆB√?‚Ié?\!?*¢@Blayer1.0.bn1.running_meanJÄö4øs§Jø¢°ΩﬂUø¨GøHﬂræwæ-ød’≥>qkHø W⁄>‚Ï0>VŸ˝æb ¶æ0oæu
+}øCvdøËGø¯z⁄æ°aøAƒÂæ-xCæT}6ø∏•Køg~øâP>ŒØæ–ÂbøœY`æO2	øÏ”&øåÑÛ=>Í"ø`b^æ=#&>!«≈æ.Í=í÷IøÌ??£ù9øL∆H?¯ ?ÜDïΩœÇ=41ñø±9ÜæX∂7ø UÑΩ®®·>¥’Àæ4o'ø|iøúÏcøµ Nø˚NÉæ
+c?±u.ø~](øvGáøü‘CøÿÛÜ>˜Ì;À>‰æ“ßÓæ*°@Blayer1.0.bn1.running_varJÄhv—?µ1>A‡>êÇa>€L>%\w?ÀÔÔ=Ê€.>ÄÄ√=´Âm>€">ô=‡ëù>≈Rµ>Œàp?ÇB>tø?ﬂg>çÙe=kªä>¸Ë=Nµ8?Œ:M>≥≤π?∫?çª=‚Ÿ>Ñ¬@>˙UÄ=7¡·=9P>$>ˆè>Œ”∆> f∏=•g>Éxå=àW©>X≈>Ö«G?C w>Óú=π#J>“†¯=4d>≥èj>cÙÕ=˚ƒ†=Pÿ÷=ú};?V	8>b>ÌKh@A/≤>“Tà>›ã?‡s7>ÍÀ?DÈ«=ûÕ‘=&´=£$>A•>*¢@Blayer1.0.bn2.running_meanJÄxÂÊº2›=Nà∑=)Vìæ√æ¡ë ºQ2H>º–Ñ=…≠>]Ê@>ÎG;>7^˚<hBÄºßiæNÚ>,≥=âo0>¸¿¨=Aä>ëe=ŸG&æ‘¿≈æu ”>~Ëc=µÜÌæ=m•Ωl3Ωf»Ωàó&=/∫æl-ø;s∫æ%¡Aø’/æ⁄ªæ=U/øÌ ∞æ»ÜêæÄJ.æãèzæº±;æ¯æ∂ÖÅænu√ΩWæÎ>ò¢ªæ]ûXæÏ‚æg?*ø∆X	ø!Kæ^hä=»rø⁄€FΩ≥¿I>`æÒcÕºâï„∫†ò.ø· =æ£âëæhZŸΩ!
+ø*°@Blayer1.0.bn2.running_varJÄ‡Ω)>ıi=np>Î
+>ñŒë=ÛA>€(= „I=‹ê>;î=xÒ>4ÄÉ=>£=úCÂ=&¬Œ=‰ìd=ıK˙=’¡>ÛÈV=ît.>íP>UuU>
+~u= Ì`=¿xL>Qãê>∑Vå=à/˝=⁄†=üàˆ=Ÿªì>\ÉZ>ÄâS?ªI?x¿?oAI?^”¬>TPL>Û≥x>5îé>ZQ;=û9>†ˆ9>sò,>oÒÑ=Üì>∞nä=xœÈ>*—>‚˝ü>Já>üv:>bi¬=8J?Áà>ï©«=% ¬>íÄ=k”=¶áÜ> 4>C»õ?Ø†£=CÌ>*¢@Blayer1.1.bn1.running_meanJÄ€c?©Iø‹ŒÛºJô&øàíΩ=`a?ﬁ%"=Cól>"xë>∞˝k>÷RæízøêxxΩ™!<«1w>\j›æ_Cæ=%?„>??–2?„Ô5øü$Fæºø=®>_M)ø≥ÇQøv[>fnÔ<Xo>úâ^æ˙Àc>_ëæ∫[	?˙x◊æˇmëøu,>j∞ã<Câé>
++0ø\Ê6>äÀ>È„æôåWæÎâ >í+∞æ˚->âa;<Œâ?•,?cì>Ñßøæu>]øYŸ,>µ‘”;v5&ø∞û$ø¯},>ÑõR?(ú_æIcø‹îéæºíø∂"=>*°@Blayer1.1.bn1.running_varJÄvª=nß¢>`C>6p>Wòã=åÙY>C®>i">€ıP>är>9›>%]¯>Õ≈ù=gõ>õö=ïjx>•ñ=≤–0>iÁ}>"Ö◊=ïæï>`Ÿ>‹r>Îè>IŸ=¯¿4>©>~˜=¯,π=Àπ >Œf≠=ÊAY>ë®>ùq>˛P®>ÙK–=Å
+>’ 0>BÃ˜>õ\«=Â˚ô=µﬁ„=S∑>«Ã¡=ÿb∂?+iÚ>ßŒN>…ê>ì©Œ=Ãï>IuR>(©=1â∫>Åã=à∑.>ÛÃÂ><€">™œg=`!4>ïDa>+í∂>‘r>4¢â>ò«U=*¢@Blayer1.1.bn2.running_meanJÄB4áæ†2⁄=‡+æq>æ˝Bæº"r=œ(≠=∫”Ò<ÑÒΩƒv¢=≥ñ¡=F‹Y<seI</ºyΩ^∑ÓΩúJg=ØÃ˙=∆î=Â€>IJxΩ˝MΩ8¿éºÈ∑˛=««º’ëÕ<·üΩZC≈<ö3æé¶òºëmã=õ#=â«êº¡Ãzæ‘ÒÁΩgY‡Ω¢ôºú7ÑΩ‰›}=:U¥Ω›OÇæã∞ΩR•=∫n¡ºgµ7æ≈ æ	j3ææi=Û®B;9ΩÂõ=Js,=2æ¯´ãΩjt˝:?ñΩWùæ66ΩÍóΩ∑áÂ=NæeŸ=WÕÕΩõ"°=¸DXæ*°@Blayer1.1.bn2.running_varJÄêÊR=Z X<ˆ)=ªzΩ<Ï%◊<2ÁX<Òæ)<ib<íı–=‰»
+<Ü’<O<Êî.<yl›<Kñ=»Å7<ªΩ<G≠ã<M0]</óø<PúM=/’=
+ãì< p<¡Ê;wvW<Uûn<é´3= œV<µ…<˘L<(Íë</¿>÷&=øÂÏ<‰˛„<Q€Ë<¨Wı;[(=?C=,q“;Á<◊]<X+=±gË<án=ÙNK<¨=Æˇê< £<…Ñ<2ø:=È[Ì<Ã%b<¨¸·<IVE=!oY<¥ò<ΩAK<w◊(=≤¸<Ïëe=∫éÜ<À0Ñ=*gÄBlayer2.0.bn1.running_meanj$
+locationbest_model_c03.onnx.dataj
+offset4608j
+length512p*fÄBlayer2.0.bn1.running_varj$
+locationbest_model_c03.onnx.dataj
+offset5120j
+length512p*gÄBlayer2.0.bn2.running_meanj$
+locationbest_model_c03.onnx.dataj
+offset5632j
+length512p*fÄBlayer2.0.bn2.running_varj$
+locationbest_model_c03.onnx.dataj
+offset6144j
+length512p*nÄB layer2.0.shortcut.1.running_meanj$
+locationbest_model_c03.onnx.dataj
+offset6656j
+length512p*mÄBlayer2.0.shortcut.1.running_varj$
+locationbest_model_c03.onnx.dataj
+offset7168j
+length512p*gÄBlayer2.1.bn1.running_meanj$
+locationbest_model_c03.onnx.dataj
+offset7680j
+length512p*fÄBlayer2.1.bn1.running_varj$
+locationbest_model_c03.onnx.dataj
+offset8192j
+length512p*gÄBlayer2.1.bn2.running_meanj$
+locationbest_model_c03.onnx.dataj
+offset8704j
+length512p*fÄBlayer2.1.bn2.running_varj$
+locationbest_model_c03.onnx.dataj
+offset9216j
+length512p*iÄBlayer3.0.bn1.running_meanj$
+locationbest_model_c03.onnx.dataj
+offset19456j
+length1024p*hÄBlayer3.0.bn1.running_varj$
+locationbest_model_c03.onnx.dataj
+offset20480j
+length1024p*iÄBlayer3.0.bn2.running_meanj$
+locationbest_model_c03.onnx.dataj
+offset21504j
+length1024p*hÄBlayer3.0.bn2.running_varj$
+locationbest_model_c03.onnx.dataj
+offset22528j
+length1024p*pÄB layer3.0.shortcut.1.running_meanj$
+locationbest_model_c03.onnx.dataj
+offset23552j
+length1024p*oÄBlayer3.0.shortcut.1.running_varj$
+locationbest_model_c03.onnx.dataj
+offset24576j
+length1024p*iÄBlayer3.1.bn1.running_meanj$
+locationbest_model_c03.onnx.dataj
+offset25600j
+length1024p*hÄBlayer3.1.bn1.running_varj$
+locationbest_model_c03.onnx.dataj
+offset26624j
+length1024p*iÄBlayer3.1.bn2.running_meanj$
+locationbest_model_c03.onnx.dataj
+offset27648j
+length1024p*hÄBlayer3.1.bn2.running_varj$
+locationbest_model_c03.onnx.dataj
+offset28672j
+length1024p*a@Bconv1.weightj$
+locationbest_model_c03.onnx.dataj
+offset30720j
+length6912p*m@@Blayer1.0.conv1.weightj$
+locationbest_model_c03.onnx.dataj
+offset211712j
+length147456p*m@@Blayer1.0.conv2.weightj$
+locationbest_model_c03.onnx.dataj
+offset359168j
+length147456p*m@@Blayer1.1.conv1.weightj$
+locationbest_model_c03.onnx.dataj
+offset506624j
+length147456p*m@@Blayer1.1.conv2.weightj$
+locationbest_model_c03.onnx.dataj
+offset654080j
+length147456p*nÄ@Blayer2.0.conv1.weightj$
+locationbest_model_c03.onnx.dataj
+offset801536j
+length294912p*pÄÄBlayer2.0.conv2.weightj$
+locationbest_model_c03.onnx.dataj
+offset1096448j
+length589824p*qÄ@Blayer2.0.shortcut.0.weightj$
+locationbest_model_c03.onnx.dataj
+offset47872j
+length32768p*pÄÄBlayer2.1.conv1.weightj$
+locationbest_model_c03.onnx.dataj
+offset1686272j
+length589824p*pÄÄBlayer2.1.conv2.weightj$
+locationbest_model_c03.onnx.dataj
+offset2276096j
+length589824p*qÄÄBlayer3.0.conv1.weightj$
+locationbest_model_c03.onnx.dataj
+offset2883584j
+length1179648p*qÄÄBlayer3.0.conv2.weightj$
+locationbest_model_c03.onnx.dataj
+offset4063232j
+length2359296p*sÄÄBlayer3.0.shortcut.0.weightj$
+locationbest_model_c03.onnx.dataj
+offset80640j
+length131072p*qÄÄBlayer3.1.conv1.weightj$
+locationbest_model_c03.onnx.dataj
+offset6422528j
+length2359296p*qÄÄBlayer3.1.conv2.weightj$
+locationbest_model_c03.onnx.dataj
+offset8781824j
+length2359296p*\
+ÄB	fc.weightj$
+locationbest_model_c03.onnx.dataj
+offset37632j
+length10240p*é@Bval_5JÄ                                                                                                                                                                                                                                                                *TÄBval_52j$
+locationbest_model_c03.onnx.dataj
+offset9728j
+length512p*VÄBval_97j$
+locationbest_model_c03.onnx.dataj
+offset29696j
+length1024p*Bval_140Jˇˇˇˇˇˇˇˇ˛ˇˇˇˇˇˇˇ*Bval_144J              Z»
+input
+
+s77
+
+ 
+ "=
+/pkg.torch.export.graph_signature.InputSpec.kind
+USER_INPUT"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"&
+!pkg.torch.onnx.original_node_namexbÜ
+output
+
+
+
+"?
+0pkg.torch.export.graph_signature.OutputSpec.kindUSER_OUTPUT"+
+!pkg.torch.onnx.original_node_namelinearj»
+
+bn1.weight
+
+
+@"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"1
+!pkg.torch.onnx.original_node_namep_bn1_weightjƒ
+bn1.bias
+
+
+@"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"/
+!pkg.torch.onnx.original_node_name
+p_bn1_biasj⁄
+layer1.0.bn1.weight
+
+
+@"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone":
+!pkg.torch.onnx.original_node_namep_layer1_0_bn1_weightj÷
+layer1.0.bn1.bias
+
+
+@"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_layer1_0_bn1_biasj⁄
+layer1.0.bn2.weight
+
+
+@"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone":
+!pkg.torch.onnx.original_node_namep_layer1_0_bn2_weightj÷
+layer1.0.bn2.bias
+
+
+@"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_layer1_0_bn2_biasj⁄
+layer1.1.bn1.weight
+
+
+@"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone":
+!pkg.torch.onnx.original_node_namep_layer1_1_bn1_weightj÷
+layer1.1.bn1.bias
+
+
+@"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_layer1_1_bn1_biasj⁄
+layer1.1.bn2.weight
+
+
+@"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone":
+!pkg.torch.onnx.original_node_namep_layer1_1_bn2_weightj÷
+layer1.1.bn2.bias
+
+
+@"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_layer1_1_bn2_biasj€
+layer2.0.bn1.weight
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone":
+!pkg.torch.onnx.original_node_namep_layer2_0_bn1_weightj◊
+layer2.0.bn1.bias
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_layer2_0_bn1_biasj€
+layer2.0.bn2.weight
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone":
+!pkg.torch.onnx.original_node_namep_layer2_0_bn2_weightj◊
+layer2.0.bn2.bias
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_layer2_0_bn2_biasjÈ
+layer2.0.shortcut.1.weight
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"A
+!pkg.torch.onnx.original_node_namep_layer2_0_shortcut_1_weightj€
+layer2.1.bn1.weight
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone":
+!pkg.torch.onnx.original_node_namep_layer2_1_bn1_weightj◊
+layer2.1.bn1.bias
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_layer2_1_bn1_biasj€
+layer2.1.bn2.weight
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone":
+!pkg.torch.onnx.original_node_namep_layer2_1_bn2_weightj◊
+layer2.1.bn2.bias
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_layer2_1_bn2_biasj€
+layer3.0.bn1.weight
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone":
+!pkg.torch.onnx.original_node_namep_layer3_0_bn1_weightj◊
+layer3.0.bn1.bias
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_layer3_0_bn1_biasj€
+layer3.0.bn2.weight
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone":
+!pkg.torch.onnx.original_node_namep_layer3_0_bn2_weightj◊
+layer3.0.bn2.bias
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_layer3_0_bn2_biasjÈ
+layer3.0.shortcut.1.weight
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"A
+!pkg.torch.onnx.original_node_namep_layer3_0_shortcut_1_weightj€
+layer3.1.bn1.weight
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone":
+!pkg.torch.onnx.original_node_namep_layer3_1_bn1_weightj◊
+layer3.1.bn1.bias
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_layer3_1_bn1_biasj€
+layer3.1.bn2.weight
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone":
+!pkg.torch.onnx.original_node_namep_layer3_1_bn2_weightj◊
+layer3.1.bn2.bias
+	
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_layer3_1_bn2_biasj¬
+fc.bias
+
+
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone".
+!pkg.torch.onnx.original_node_name	p_fc_biasj—
+bn1.running_mean
+
+
+@"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"7
+!pkg.torch.onnx.original_node_nameb_bn1_running_meanjœ
+bn1.running_var
+
+
+@"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"6
+!pkg.torch.onnx.original_node_nameb_bn1_running_varj„
+layer1.0.bn1.running_mean
+
+
+@"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"@
+!pkg.torch.onnx.original_node_nameb_layer1_0_bn1_running_meanj·
+layer1.0.bn1.running_var
+
+
+@"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"?
+!pkg.torch.onnx.original_node_nameb_layer1_0_bn1_running_varj„
+layer1.0.bn2.running_mean
+
+
+@"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"@
+!pkg.torch.onnx.original_node_nameb_layer1_0_bn2_running_meanj·
+layer1.0.bn2.running_var
+
+
+@"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"?
+!pkg.torch.onnx.original_node_nameb_layer1_0_bn2_running_varj„
+layer1.1.bn1.running_mean
+
+
+@"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"@
+!pkg.torch.onnx.original_node_nameb_layer1_1_bn1_running_meanj·
+layer1.1.bn1.running_var
+
+
+@"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"?
+!pkg.torch.onnx.original_node_nameb_layer1_1_bn1_running_varj„
+layer1.1.bn2.running_mean
+
+
+@"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"@
+!pkg.torch.onnx.original_node_nameb_layer1_1_bn2_running_meanj·
+layer1.1.bn2.running_var
+
+
+@"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"?
+!pkg.torch.onnx.original_node_nameb_layer1_1_bn2_running_varj‰
+layer2.0.bn1.running_mean
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"@
+!pkg.torch.onnx.original_node_nameb_layer2_0_bn1_running_meanj‚
+layer2.0.bn1.running_var
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"?
+!pkg.torch.onnx.original_node_nameb_layer2_0_bn1_running_varj‰
+layer2.0.bn2.running_mean
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"@
+!pkg.torch.onnx.original_node_nameb_layer2_0_bn2_running_meanj‚
+layer2.0.bn2.running_var
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"?
+!pkg.torch.onnx.original_node_nameb_layer2_0_bn2_running_varjÚ
+ layer2.0.shortcut.1.running_mean
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"G
+!pkg.torch.onnx.original_node_name"b_layer2_0_shortcut_1_running_meanj
+layer2.0.shortcut.1.running_var
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"F
+!pkg.torch.onnx.original_node_name!b_layer2_0_shortcut_1_running_varj‰
+layer2.1.bn1.running_mean
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"@
+!pkg.torch.onnx.original_node_nameb_layer2_1_bn1_running_meanj‚
+layer2.1.bn1.running_var
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"?
+!pkg.torch.onnx.original_node_nameb_layer2_1_bn1_running_varj‰
+layer2.1.bn2.running_mean
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"@
+!pkg.torch.onnx.original_node_nameb_layer2_1_bn2_running_meanj‚
+layer2.1.bn2.running_var
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"?
+!pkg.torch.onnx.original_node_nameb_layer2_1_bn2_running_varj‰
+layer3.0.bn1.running_mean
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"@
+!pkg.torch.onnx.original_node_nameb_layer3_0_bn1_running_meanj‚
+layer3.0.bn1.running_var
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"?
+!pkg.torch.onnx.original_node_nameb_layer3_0_bn1_running_varj‰
+layer3.0.bn2.running_mean
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"@
+!pkg.torch.onnx.original_node_nameb_layer3_0_bn2_running_meanj‚
+layer3.0.bn2.running_var
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"?
+!pkg.torch.onnx.original_node_nameb_layer3_0_bn2_running_varjÚ
+ layer3.0.shortcut.1.running_mean
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"G
+!pkg.torch.onnx.original_node_name"b_layer3_0_shortcut_1_running_meanj
+layer3.0.shortcut.1.running_var
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"F
+!pkg.torch.onnx.original_node_name!b_layer3_0_shortcut_1_running_varj‰
+layer3.1.bn1.running_mean
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"@
+!pkg.torch.onnx.original_node_nameb_layer3_1_bn1_running_meanj‚
+layer3.1.bn1.running_var
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"?
+!pkg.torch.onnx.original_node_nameb_layer3_1_bn1_running_varj‰
+layer3.1.bn2.running_mean
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"@
+!pkg.torch.onnx.original_node_nameb_layer3_1_bn2_running_meanj‚
+layer3.1.bn2.running_var
+	
+Ä"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"?
+!pkg.torch.onnx.original_node_nameb_layer3_1_bn2_running_varjÿ
+conv1.weight
+
+@
+
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"3
+!pkg.torch.onnx.original_node_namep_conv1_weightjÍ
+layer1.0.conv1.weight
+
+@
+@
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"<
+!pkg.torch.onnx.original_node_namep_layer1_0_conv1_weightjÍ
+layer1.0.conv2.weight
+
+@
+@
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"<
+!pkg.torch.onnx.original_node_namep_layer1_0_conv2_weightjÍ
+layer1.1.conv1.weight
+
+@
+@
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"<
+!pkg.torch.onnx.original_node_namep_layer1_1_conv1_weightjÍ
+layer1.1.conv2.weight
+
+@
+@
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"<
+!pkg.torch.onnx.original_node_namep_layer1_1_conv2_weightjÎ
+layer2.0.conv1.weight
+
+Ä
+@
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"<
+!pkg.torch.onnx.original_node_namep_layer2_0_conv1_weightjÏ
+layer2.0.conv2.weight
+
+Ä
+Ä
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"<
+!pkg.torch.onnx.original_node_namep_layer2_0_conv2_weightjı
+layer2.0.shortcut.0.weight
+
+Ä
+@
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"A
+!pkg.torch.onnx.original_node_namep_layer2_0_shortcut_0_weightjÏ
+layer2.1.conv1.weight
+
+Ä
+Ä
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"<
+!pkg.torch.onnx.original_node_namep_layer2_1_conv1_weightjÏ
+layer2.1.conv2.weight
+
+Ä
+Ä
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"<
+!pkg.torch.onnx.original_node_namep_layer2_1_conv2_weightjÏ
+layer3.0.conv1.weight
+
+Ä
+Ä
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"<
+!pkg.torch.onnx.original_node_namep_layer3_0_conv1_weightjÏ
+layer3.0.conv2.weight
+
+Ä
+Ä
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"<
+!pkg.torch.onnx.original_node_namep_layer3_0_conv2_weightjˆ
+layer3.0.shortcut.0.weight
+
+Ä
+Ä
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"A
+!pkg.torch.onnx.original_node_namep_layer3_0_shortcut_0_weightjÏ
+layer3.1.conv1.weight
+
+Ä
+Ä
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"<
+!pkg.torch.onnx.original_node_namep_layer3_1_conv1_weightjÏ
+layer3.1.conv2.weight
+
+Ä
+Ä
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"<
+!pkg.torch.onnx.original_node_namep_layer3_1_conv2_weightjÀ
+	fc.weight
+	
+
+
+Ä"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"0
+!pkg.torch.onnx.original_node_namep_fc_weightjq
+val_5
+
+
+@"\
+$pkg.onnxscript.optimizer.folded_from4['conv1.weight', 'val_0', 'val_2', 'val_3', 'val_4']j
+val_52
+	
+Ä"h
+$pkg.onnxscript.optimizer.folded_from@['layer2.0.conv1.weight', 'val_3', 'val_48', 'val_50', 'val_51']j
+val_97
+	
+Ä"h
+$pkg.onnxscript.optimizer.folded_from@['layer3.0.conv1.weight', 'val_3', 'val_93', 'val_95', 'val_96']jU
+val_140
+
+
+">
+$pkg.onnxscript.optimizer.folded_from['val_138', 'val_139']jU
+val_144
+
+
+">
+$pkg.onnxscript.optimizer.folded_from['val_142', 'val_143']j#
+conv2d
+
+s77
+@
+ 
+ j!
+getitem
+
+
+@
+ 
+ j
+relu
+
+
+@
+ 
+ j"
+conv2d_1
+
+
+@
+ 
+ j#
+	getitem_3
+
+
+@
+ 
+ j 
+relu_1
+
+
+@
+ 
+ j"
+conv2d_2
+
+
+@
+ 
+ j#
+	getitem_6
+
+
+@
+ 
+ j
+add_5
+
+
+@
+ 
+ j 
+relu_2
+
+
+@
+ 
+ j"
+conv2d_3
+
+
+@
+ 
+ j#
+	getitem_9
+
+
+@
+ 
+ j 
+relu_3
+
+
+@
+ 
+ j"
+conv2d_4
+
+
+@
+ 
+ j$
+
+getitem_12
+
+
+@
+ 
+ j
+add_6
+
+
+@
+ 
+ j 
+relu_4
+
+
+@
+ 
+ j#
+conv2d_5
+
+
+Ä
+
+j%
+
+getitem_15
+
+
+Ä
+
+j!
+relu_5
+
+
+Ä
+
+j#
+conv2d_6
+
+
+Ä
+
+j%
+
+getitem_18
+
+
+Ä
+
+j#
+conv2d_7
+
+
+Ä
+
+j%
+
+getitem_21
+
+
+Ä
+
+j 
+add_7
+
+
+Ä
+
+j!
+relu_6
+
+
+Ä
+
+j#
+conv2d_8
+
+
+Ä
+
+j%
+
+getitem_24
+
+
+Ä
+
+j!
+relu_7
+
+
+Ä
+
+j#
+conv2d_9
+
+
+Ä
+
+j%
+
+getitem_27
+
+
+Ä
+
+j 
+add_8
+
+
+Ä
+
+j!
+relu_8
+
+
+Ä
+
+j$
+	conv2d_10
+
+
+Ä
+
+j%
+
+getitem_30
+
+
+Ä
+
+j!
+relu_9
+
+
+Ä
+
+j$
+	conv2d_11
+
+
+Ä
+
+j%
+
+getitem_33
+
+
+Ä
+
+j$
+	conv2d_12
+
+
+Ä
+
+j%
+
+getitem_36
+
+
+Ä
+
+j 
+add_9
+
+
+Ä
+
+j"
+relu_10
+
+
+Ä
+
+j$
+	conv2d_13
+
+
+Ä
+
+j%
+
+getitem_39
+
+
+Ä
+
+j"
+relu_11
+
+
+Ä
+
+j$
+	conv2d_14
+
+
+Ä
+
+j%
+
+getitem_42
+
+
+Ä
+
+j!
+add_10
+
+
+Ä
+
+j"
+relu_12
+
+
+Ä
+
+j
+mean
+
+
+Ä
+
+j
+view
+	
+
+ÄÇ’7
+0pkg.torch.export.ExportedProgram.graph_signature†7
+# inputs
+p_conv1_weight: PARAMETER target='conv1.weight'
+p_bn1_weight: PARAMETER target='bn1.weight'
+p_bn1_bias: PARAMETER target='bn1.bias'
+p_layer1_0_conv1_weight: PARAMETER target='layer1.0.conv1.weight'
+p_layer1_0_bn1_weight: PARAMETER target='layer1.0.bn1.weight'
+p_layer1_0_bn1_bias: PARAMETER target='layer1.0.bn1.bias'
+p_layer1_0_conv2_weight: PARAMETER target='layer1.0.conv2.weight'
+p_layer1_0_bn2_weight: PARAMETER target='layer1.0.bn2.weight'
+p_layer1_0_bn2_bias: PARAMETER target='layer1.0.bn2.bias'
+p_layer1_1_conv1_weight: PARAMETER target='layer1.1.conv1.weight'
+p_layer1_1_bn1_weight: PARAMETER target='layer1.1.bn1.weight'
+p_layer1_1_bn1_bias: PARAMETER target='layer1.1.bn1.bias'
+p_layer1_1_conv2_weight: PARAMETER target='layer1.1.conv2.weight'
+p_layer1_1_bn2_weight: PARAMETER target='layer1.1.bn2.weight'
+p_layer1_1_bn2_bias: PARAMETER target='layer1.1.bn2.bias'
+p_layer2_0_conv1_weight: PARAMETER target='layer2.0.conv1.weight'
+p_layer2_0_bn1_weight: PARAMETER target='layer2.0.bn1.weight'
+p_layer2_0_bn1_bias: PARAMETER target='layer2.0.bn1.bias'
+p_layer2_0_conv2_weight: PARAMETER target='layer2.0.conv2.weight'
+p_layer2_0_bn2_weight: PARAMETER target='layer2.0.bn2.weight'
+p_layer2_0_bn2_bias: PARAMETER target='layer2.0.bn2.bias'
+p_layer2_0_shortcut_0_weight: PARAMETER target='layer2.0.shortcut.0.weight'
+p_layer2_0_shortcut_1_weight: PARAMETER target='layer2.0.shortcut.1.weight'
+p_layer2_0_shortcut_1_bias: PARAMETER target='layer2.0.shortcut.1.bias'
+p_layer2_1_conv1_weight: PARAMETER target='layer2.1.conv1.weight'
+p_layer2_1_bn1_weight: PARAMETER target='layer2.1.bn1.weight'
+p_layer2_1_bn1_bias: PARAMETER target='layer2.1.bn1.bias'
+p_layer2_1_conv2_weight: PARAMETER target='layer2.1.conv2.weight'
+p_layer2_1_bn2_weight: PARAMETER target='layer2.1.bn2.weight'
+p_layer2_1_bn2_bias: PARAMETER target='layer2.1.bn2.bias'
+p_layer3_0_conv1_weight: PARAMETER target='layer3.0.conv1.weight'
+p_layer3_0_bn1_weight: PARAMETER target='layer3.0.bn1.weight'
+p_layer3_0_bn1_bias: PARAMETER target='layer3.0.bn1.bias'
+p_layer3_0_conv2_weight: PARAMETER target='layer3.0.conv2.weight'
+p_layer3_0_bn2_weight: PARAMETER target='layer3.0.bn2.weight'
+p_layer3_0_bn2_bias: PARAMETER target='layer3.0.bn2.bias'
+p_layer3_0_shortcut_0_weight: PARAMETER target='layer3.0.shortcut.0.weight'
+p_layer3_0_shortcut_1_weight: PARAMETER target='layer3.0.shortcut.1.weight'
+p_layer3_0_shortcut_1_bias: PARAMETER target='layer3.0.shortcut.1.bias'
+p_layer3_1_conv1_weight: PARAMETER target='layer3.1.conv1.weight'
+p_layer3_1_bn1_weight: PARAMETER target='layer3.1.bn1.weight'
+p_layer3_1_bn1_bias: PARAMETER target='layer3.1.bn1.bias'
+p_layer3_1_conv2_weight: PARAMETER target='layer3.1.conv2.weight'
+p_layer3_1_bn2_weight: PARAMETER target='layer3.1.bn2.weight'
+p_layer3_1_bn2_bias: PARAMETER target='layer3.1.bn2.bias'
+p_fc_weight: PARAMETER target='fc.weight'
+p_fc_bias: PARAMETER target='fc.bias'
+b_bn1_running_mean: BUFFER target='bn1.running_mean' persistent=True
+b_bn1_running_var: BUFFER target='bn1.running_var' persistent=True
+b_bn1_num_batches_tracked: BUFFER target='bn1.num_batches_tracked' persistent=True
+b_layer1_0_bn1_running_mean: BUFFER target='layer1.0.bn1.running_mean' persistent=True
+b_layer1_0_bn1_running_var: BUFFER target='layer1.0.bn1.running_var' persistent=True
+b_layer1_0_bn1_num_batches_tracked: BUFFER target='layer1.0.bn1.num_batches_tracked' persistent=True
+b_layer1_0_bn2_running_mean: BUFFER target='layer1.0.bn2.running_mean' persistent=True
+b_layer1_0_bn2_running_var: BUFFER target='layer1.0.bn2.running_var' persistent=True
+b_layer1_0_bn2_num_batches_tracked: BUFFER target='layer1.0.bn2.num_batches_tracked' persistent=True
+b_layer1_1_bn1_running_mean: BUFFER target='layer1.1.bn1.running_mean' persistent=True
+b_layer1_1_bn1_running_var: BUFFER target='layer1.1.bn1.running_var' persistent=True
+b_layer1_1_bn1_num_batches_tracked: BUFFER target='layer1.1.bn1.num_batches_tracked' persistent=True
+b_layer1_1_bn2_running_mean: BUFFER target='layer1.1.bn2.running_mean' persistent=True
+b_layer1_1_bn2_running_var: BUFFER target='layer1.1.bn2.running_var' persistent=True
+b_layer1_1_bn2_num_batches_tracked: BUFFER target='layer1.1.bn2.num_batches_tracked' persistent=True
+b_layer2_0_bn1_running_mean: BUFFER target='layer2.0.bn1.running_mean' persistent=True
+b_layer2_0_bn1_running_var: BUFFER target='layer2.0.bn1.running_var' persistent=True
+b_layer2_0_bn1_num_batches_tracked: BUFFER target='layer2.0.bn1.num_batches_tracked' persistent=True
+b_layer2_0_bn2_running_mean: BUFFER target='layer2.0.bn2.running_mean' persistent=True
+b_layer2_0_bn2_running_var: BUFFER target='layer2.0.bn2.running_var' persistent=True
+b_layer2_0_bn2_num_batches_tracked: BUFFER target='layer2.0.bn2.num_batches_tracked' persistent=True
+b_layer2_0_shortcut_1_running_mean: BUFFER target='layer2.0.shortcut.1.running_mean' persistent=True
+b_layer2_0_shortcut_1_running_var: BUFFER target='layer2.0.shortcut.1.running_var' persistent=True
+b_layer2_0_shortcut_1_num_batches_tracked: BUFFER target='layer2.0.shortcut.1.num_batches_tracked' persistent=True
+b_layer2_1_bn1_running_mean: BUFFER target='layer2.1.bn1.running_mean' persistent=True
+b_layer2_1_bn1_running_var: BUFFER target='layer2.1.bn1.running_var' persistent=True
+b_layer2_1_bn1_num_batches_tracked: BUFFER target='layer2.1.bn1.num_batches_tracked' persistent=True
+b_layer2_1_bn2_running_mean: BUFFER target='layer2.1.bn2.running_mean' persistent=True
+b_layer2_1_bn2_running_var: BUFFER target='layer2.1.bn2.running_var' persistent=True
+b_layer2_1_bn2_num_batches_tracked: BUFFER target='layer2.1.bn2.num_batches_tracked' persistent=True
+b_layer3_0_bn1_running_mean: BUFFER target='layer3.0.bn1.running_mean' persistent=True
+b_layer3_0_bn1_running_var: BUFFER target='layer3.0.bn1.running_var' persistent=True
+b_layer3_0_bn1_num_batches_tracked: BUFFER target='layer3.0.bn1.num_batches_tracked' persistent=True
+b_layer3_0_bn2_running_mean: BUFFER target='layer3.0.bn2.running_mean' persistent=True
+b_layer3_0_bn2_running_var: BUFFER target='layer3.0.bn2.running_var' persistent=True
+b_layer3_0_bn2_num_batches_tracked: BUFFER target='layer3.0.bn2.num_batches_tracked' persistent=True
+b_layer3_0_shortcut_1_running_mean: BUFFER target='layer3.0.shortcut.1.running_mean' persistent=True
+b_layer3_0_shortcut_1_running_var: BUFFER target='layer3.0.shortcut.1.running_var' persistent=True
+b_layer3_0_shortcut_1_num_batches_tracked: BUFFER target='layer3.0.shortcut.1.num_batches_tracked' persistent=True
+b_layer3_1_bn1_running_mean: BUFFER target='layer3.1.bn1.running_mean' persistent=True
+b_layer3_1_bn1_running_var: BUFFER target='layer3.1.bn1.running_var' persistent=True
+b_layer3_1_bn1_num_batches_tracked: BUFFER target='layer3.1.bn1.num_batches_tracked' persistent=True
+b_layer3_1_bn2_running_mean: BUFFER target='layer3.1.bn2.running_mean' persistent=True
+b_layer3_1_bn2_running_var: BUFFER target='layer3.1.bn2.running_var' persistent=True
+b_layer3_1_bn2_num_batches_tracked: BUFFER target='layer3.1.bn2.num_batches_tracked' persistent=True
+x: USER_INPUT
+
+# outputs
+linear: USER_OUTPUT
+ÇJ
+2pkg.torch.export.ExportedProgram.range_constraints{s77: VR[0, int_oo]}B
+ 

@@ -17,12 +17,17 @@ The core script, `experiment_iitm1.py`, automates the process of training the mo
 
 ```
 .
-├── checkpoints/
-├── data/
-├── experiment_iitm1.py
-├── results.csv
-├── requirements.txt
-└── README.md
+├── results/                  # Directory for saved model results.csv
+├── best_model_data/          # Directory for saved best onnx model
+├── best_vgg6_c22.pth         # Pre-trained weights for the best model
+├── best_vgg6_c22.onnx        # ONNX export of the best model
+├── best_model_c03.onnx       # Another ONNX export of the best model - generarted with run2
+├── train_iitm_wandb.py       # Main script for running the W&B hyperparameter sweep
+├── train_best_model.py       # Script to train and save the best configuration (C22)
+├── evaluate.py               # Script to evaluate a saved checkpoint on the test set
+├── requirements.txt          # Project dependencies
+└── README.md                 # This file
+
 ```
 
 ## Setup and Installation
@@ -55,12 +60,12 @@ The main script `experiment_iitm1.py` is controlled via command-line arguments.
 
 To run all 24 predefined configurations for 50 epochs and save the model checkpoints:
 ```bash
-python experiment_iitm1.py --epochs 50 --save-checkpoints
+train_iitm_wandb.py --epochs 50 --save-checkpoints
 ```
 
 To run a limited subset of configurations (e.g., the first 5) for a quick test:
 ```bash
-python experiment_iitm1.py --epochs 10 --limit 5
+train_iitm_wandb.py --epochs 10 --limit 5
 ```
 
 ### Command-Line Arguments
