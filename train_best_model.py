@@ -230,3 +230,23 @@ print("\n=== Final Results for Best Config (C22) ===")
 print(f"Best Validation Accuracy: {best_val_acc:.2f}% at epoch {best_epoch}")
 print(f"Test Accuracy at Best: {test_acc:.2f}%")
 
+# --- Save the best model ---
+model_path = "best_vgg6_c22.pth"
+torch.save(best_state, model_path)
+print(f"\nModel saved to {model_path}")
+
+# --- Load the model for inference ---
+loaded_model = vgg6(num_classes=10, bn=bn, activation=activation, width_mult=width_mult, dropout=dropout)
+loaded_model.load_state_dict(torch.load(model_path))
+loaded_model = loaded_model.to(device)
+loaded_model.eval()
+
+# Quick sanity check on test set
+test_loss_loaded, test_acc_loaded = evaluate(loaded_model, test_loader, criterion, device)
+print(f"Loaded Model Test Accuracy: {test_acc_loaded:.2f}%")
+
+# --- Optional: Export to ONNX ---
+dummy_input = torch.randn(1, 3, 32, 32).to(device)
+onnx_path = "best_vgg6_c22.onnx"
+torch.onnx.export(loaded_model, dummy_input, onnx_path, input_names=['input'], output_names=['output'], opset_version=11)
+print(f"Model exported to {onnx_path}")

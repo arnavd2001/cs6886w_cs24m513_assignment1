@@ -1,0 +1,973 @@
+
+pytorch2.9.0+cu128:·ò
+Ï
+input
+features.0.weight
+val_5conv2dnode_conv2d"Conv*
+auto_pad"NOTSET *
+	dilations@@ *
+group *
+pads@@@@ *
+strides@@ J‘
+	namespaceƒ: __main__.VGG/features: torch.nn.modules.container.Sequential/features.0: torch.nn.modules.conv.Conv2d/conv2d: aten.conv2d.defaultJ’
+pkg.torch.onnx.class_hierarchyp['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J®
+pkg.torch.onnx.fx_node“%conv2d : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%x, %p_features_0_weight, None, [1, 1], [1, 1]), kwargs = {})JF
+pkg.torch.onnx.name_scopes(['', 'features', 'features.0', 'conv2d']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+ô
+
+conv2d
+features.1.weight
+features.1.bias
+features.1.running_mean
+features.1.running_vargetitem,node__native_batch_norm_legit_no_training__0"BatchNormalization*
+epsilon¬Å'7 *
+momentumfff? J×
+	namespaceÉ: __main__.VGG/features: torch.nn.modules.container.Sequential/features.1: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training: aten._native_batch_norm_legit_no_training.defaultJ»
+pkg.torch.onnx.class_hierarchy˜['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J°
+pkg.torch.onnx.fx_node•%_native_batch_norm_legit_no_training : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d, %p_features_1_weight, %p_features_1_bias, %b_features_1_running_mean, %b_features_1_running_var, 0.1, 1e-05), kwargs = {})Jd
+pkg.torch.onnx.name_scopesF['', 'features', 'features.1', '_native_batch_norm_legit_no_training']Jñ
+pkg.torch.onnx.stack_traceÒFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+¶
+getitem
+val_12val_13node_Div_13"DivJ‘
+	namespaceƒ: __main__.VGG/features: torch.nn.modules.container.Sequential/features.2: torch.nn.modules.activation.GELU/gelu: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']J„
+pkg.torch.onnx.fx_nodej%gelu : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem,), kwargs = {})JD
+pkg.torch.onnx.name_scopes&['', 'features', 'features.2', 'gelu']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+­
+val_13val_14node_Erf_14"ErfJ‘
+	namespaceƒ: __main__.VGG/features: torch.nn.modules.container.Sequential/features.2: torch.nn.modules.activation.GELU/gelu: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']J„
+pkg.torch.onnx.fx_nodej%gelu : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem,), kwargs = {})JD
+pkg.torch.onnx.name_scopes&['', 'features', 'features.2', 'gelu']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+µ
+val_14
+val_15val_16node_Add_16"AddJ‘
+	namespaceƒ: __main__.VGG/features: torch.nn.modules.container.Sequential/features.2: torch.nn.modules.activation.GELU/gelu: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']J„
+pkg.torch.onnx.fx_nodej%gelu : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem,), kwargs = {})JD
+pkg.torch.onnx.name_scopes&['', 'features', 'features.2', 'gelu']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+µ
+val_17
+val_16val_18node_Mul_18"MulJ‘
+	namespaceƒ: __main__.VGG/features: torch.nn.modules.container.Sequential/features.2: torch.nn.modules.activation.GELU/gelu: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']J„
+pkg.torch.onnx.fx_nodej%gelu : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem,), kwargs = {})JD
+pkg.torch.onnx.name_scopes&['', 'features', 'features.2', 'gelu']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+²
+getitem
+val_18gelu	node_gelu"MulJ‘
+	namespaceƒ: __main__.VGG/features: torch.nn.modules.container.Sequential/features.2: torch.nn.modules.activation.GELU/gelu: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']J„
+pkg.torch.onnx.fx_nodej%gelu : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem,), kwargs = {})JD
+pkg.torch.onnx.name_scopes&['', 'features', 'features.2', 'gelu']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+Û
+gelu
+features.3.weight
+val_5conv2d_1node_conv2d_1"Conv*
+auto_pad"NOTSET *
+	dilations@@ *
+group *
+pads@@@@ *
+strides@@ J“
+	namespace…: __main__.VGG/features: torch.nn.modules.container.Sequential/features.3: torch.nn.modules.conv.Conv2d/conv2d_1: aten.conv2d.defaultJ’
+pkg.torch.onnx.class_hierarchyp['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J³
+pkg.torch.onnx.fx_node˜%conv2d_1 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%gelu, %p_features_3_weight, None, [1, 1], [1, 1]), kwargs = {})JH
+pkg.torch.onnx.name_scopes*['', 'features', 'features.3', 'conv2d_1']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+‚
+conv2d_1
+features.4.weight
+features.4.bias
+features.4.running_mean
+features.4.running_var	getitem_3.node__native_batch_norm_legit_no_training_1__0"BatchNormalization*
+epsilon¬Å'7 *
+momentumfff? JÙ
+	namespaceË: __main__.VGG/features: torch.nn.modules.container.Sequential/features.4: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_1: aten._native_batch_norm_legit_no_training.defaultJ»
+pkg.torch.onnx.class_hierarchy˜['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J´
+pkg.torch.onnx.fx_node™%_native_batch_norm_legit_no_training_1 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_1, %p_features_4_weight, %p_features_4_bias, %b_features_4_running_mean, %b_features_4_running_var, 0.1, 1e-05), kwargs = {})Jf
+pkg.torch.onnx.name_scopesH['', 'features', 'features.4', '_native_batch_norm_legit_no_training_1']Jñ
+pkg.torch.onnx.stack_traceÒFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+À
+	getitem_3
+val_12val_29node_Div_29"DivJ“
+	namespace…: __main__.VGG/features: torch.nn.modules.container.Sequential/features.5: torch.nn.modules.activation.GELU/gelu_1: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']Jˆ
+pkg.torch.onnx.fx_noden%gelu_1 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem_3,), kwargs = {})JF
+pkg.torch.onnx.name_scopes(['', 'features', 'features.5', 'gelu_1']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+µ
+val_29val_30node_Erf_30"ErfJ“
+	namespace…: __main__.VGG/features: torch.nn.modules.container.Sequential/features.5: torch.nn.modules.activation.GELU/gelu_1: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']Jˆ
+pkg.torch.onnx.fx_noden%gelu_1 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem_3,), kwargs = {})JF
+pkg.torch.onnx.name_scopes(['', 'features', 'features.5', 'gelu_1']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+½
+val_30
+val_15val_32node_Add_32"AddJ“
+	namespace…: __main__.VGG/features: torch.nn.modules.container.Sequential/features.5: torch.nn.modules.activation.GELU/gelu_1: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']Jˆ
+pkg.torch.onnx.fx_noden%gelu_1 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem_3,), kwargs = {})JF
+pkg.torch.onnx.name_scopes(['', 'features', 'features.5', 'gelu_1']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+½
+val_17
+val_32val_34node_Mul_34"MulJ“
+	namespace…: __main__.VGG/features: torch.nn.modules.container.Sequential/features.5: torch.nn.modules.activation.GELU/gelu_1: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']Jˆ
+pkg.torch.onnx.fx_noden%gelu_1 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem_3,), kwargs = {})JF
+pkg.torch.onnx.name_scopes(['', 'features', 'features.5', 'gelu_1']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+À
+	getitem_3
+val_34gelu_1node_gelu_1"MulJ“
+	namespace…: __main__.VGG/features: torch.nn.modules.container.Sequential/features.5: torch.nn.modules.activation.GELU/gelu_1: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']Jˆ
+pkg.torch.onnx.fx_noden%gelu_1 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem_3,), kwargs = {})JF
+pkg.torch.onnx.name_scopes(['', 'features', 'features.5', 'gelu_1']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+Ş
+gelu_1
+max_pool2dnode_max_pool2d"MaxPool*
+auto_pad"NOTSET *
+	ceil_mode  *
+	dilations@@ *
+kernel_shape@@ *
+pads@ @ @ @  *
+storage_order  *
+strides@@ JŸ
+	namespace‘: __main__.VGG/features: torch.nn.modules.container.Sequential/features.6: torch.nn.modules.pooling.MaxPool2d/max_pool2d: aten.max_pool2d.defaultJœ
+pkg.torch.onnx.class_hierarchyz['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.pooling.MaxPool2d', 'aten.max_pool2d.default']JŸ
+pkg.torch.onnx.fx_node„%max_pool2d : [num_users=1] = call_function[target=torch.ops.aten.max_pool2d.default](args = (%gelu_1, [2, 2], [2, 2]), kwargs = {})JJ
+pkg.torch.onnx.name_scopes,['', 'features', 'features.6', 'max_pool2d']Jï
+pkg.torch.onnx.stack_traceĞFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/pooling.py", line 226, in forward
+    return F.max_pool2d(
+è
+
+max_pool2d
+features.7.weight
+val_40conv2d_2node_conv2d_2"Conv*
+auto_pad"NOTSET *
+	dilations@@ *
+group *
+pads@@@@ *
+strides@@ J“
+	namespace…: __main__.VGG/features: torch.nn.modules.container.Sequential/features.7: torch.nn.modules.conv.Conv2d/conv2d_2: aten.conv2d.defaultJ’
+pkg.torch.onnx.class_hierarchyp['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J¹
+pkg.torch.onnx.fx_node%conv2d_2 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%max_pool2d, %p_features_7_weight, None, [1, 1], [1, 1]), kwargs = {})JH
+pkg.torch.onnx.name_scopes*['', 'features', 'features.7', 'conv2d_2']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+‚
+conv2d_2
+features.8.weight
+features.8.bias
+features.8.running_mean
+features.8.running_var	getitem_6.node__native_batch_norm_legit_no_training_2__0"BatchNormalization*
+epsilon¬Å'7 *
+momentumfff? JÙ
+	namespaceË: __main__.VGG/features: torch.nn.modules.container.Sequential/features.8: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_2: aten._native_batch_norm_legit_no_training.defaultJ»
+pkg.torch.onnx.class_hierarchy˜['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J´
+pkg.torch.onnx.fx_node™%_native_batch_norm_legit_no_training_2 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_2, %p_features_8_weight, %p_features_8_bias, %b_features_8_running_mean, %b_features_8_running_var, 0.1, 1e-05), kwargs = {})Jf
+pkg.torch.onnx.name_scopesH['', 'features', 'features.8', '_native_batch_norm_legit_no_training_2']Jñ
+pkg.torch.onnx.stack_traceÒFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+À
+	getitem_6
+val_12val_46node_Div_45"DivJ“
+	namespace…: __main__.VGG/features: torch.nn.modules.container.Sequential/features.9: torch.nn.modules.activation.GELU/gelu_2: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']Jˆ
+pkg.torch.onnx.fx_noden%gelu_2 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem_6,), kwargs = {})JF
+pkg.torch.onnx.name_scopes(['', 'features', 'features.9', 'gelu_2']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+µ
+val_46val_47node_Erf_46"ErfJ“
+	namespace…: __main__.VGG/features: torch.nn.modules.container.Sequential/features.9: torch.nn.modules.activation.GELU/gelu_2: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']Jˆ
+pkg.torch.onnx.fx_noden%gelu_2 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem_6,), kwargs = {})JF
+pkg.torch.onnx.name_scopes(['', 'features', 'features.9', 'gelu_2']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+½
+val_47
+val_15val_49node_Add_48"AddJ“
+	namespace…: __main__.VGG/features: torch.nn.modules.container.Sequential/features.9: torch.nn.modules.activation.GELU/gelu_2: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']Jˆ
+pkg.torch.onnx.fx_noden%gelu_2 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem_6,), kwargs = {})JF
+pkg.torch.onnx.name_scopes(['', 'features', 'features.9', 'gelu_2']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+½
+val_17
+val_49val_51node_Mul_50"MulJ“
+	namespace…: __main__.VGG/features: torch.nn.modules.container.Sequential/features.9: torch.nn.modules.activation.GELU/gelu_2: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']Jˆ
+pkg.torch.onnx.fx_noden%gelu_2 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem_6,), kwargs = {})JF
+pkg.torch.onnx.name_scopes(['', 'features', 'features.9', 'gelu_2']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+À
+	getitem_6
+val_51gelu_2node_gelu_2"MulJ“
+	namespace…: __main__.VGG/features: torch.nn.modules.container.Sequential/features.9: torch.nn.modules.activation.GELU/gelu_2: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']Jˆ
+pkg.torch.onnx.fx_noden%gelu_2 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem_6,), kwargs = {})JF
+pkg.torch.onnx.name_scopes(['', 'features', 'features.9', 'gelu_2']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+ä
+gelu_2
+features.10.weight
+val_40conv2d_3node_conv2d_3"Conv*
+auto_pad"NOTSET *
+	dilations@@ *
+group *
+pads@@@@ *
+strides@@ J”
+	namespace†: __main__.VGG/features: torch.nn.modules.container.Sequential/features.10: torch.nn.modules.conv.Conv2d/conv2d_3: aten.conv2d.defaultJ’
+pkg.torch.onnx.class_hierarchyp['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J¶
+pkg.torch.onnx.fx_node›%conv2d_3 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%gelu_2, %p_features_10_weight, None, [1, 1], [1, 1]), kwargs = {})JI
+pkg.torch.onnx.name_scopes+['', 'features', 'features.10', 'conv2d_3']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+Œ
+conv2d_3
+features.11.weight
+features.11.bias
+features.11.running_mean
+features.11.running_var	getitem_9.node__native_batch_norm_legit_no_training_3__0"BatchNormalization*
+epsilon¬Å'7 *
+momentumfff? JÚ
+	namespaceÌ: __main__.VGG/features: torch.nn.modules.container.Sequential/features.11: torch.nn.modules.batchnorm.BatchNorm2d/_native_batch_norm_legit_no_training_3: aten._native_batch_norm_legit_no_training.defaultJ»
+pkg.torch.onnx.class_hierarchy˜['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.batchnorm.BatchNorm2d', 'aten._native_batch_norm_legit_no_training.default']J¸
+pkg.torch.onnx.fx_node%_native_batch_norm_legit_no_training_3 : [num_users=1] = call_function[target=torch.ops.aten._native_batch_norm_legit_no_training.default](args = (%conv2d_3, %p_features_11_weight, %p_features_11_bias, %b_features_11_running_mean, %b_features_11_running_var, 0.1, 1e-05), kwargs = {})Jg
+pkg.torch.onnx.name_scopesI['', 'features', 'features.11', '_native_batch_norm_legit_no_training_3']Jñ
+pkg.torch.onnx.stack_traceÒFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/batchnorm.py", line 193, in forward
+    return F.batch_norm(
+Â
+	getitem_9
+val_12val_62node_Div_61"DivJ”
+	namespace†: __main__.VGG/features: torch.nn.modules.container.Sequential/features.12: torch.nn.modules.activation.GELU/gelu_3: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']Jˆ
+pkg.torch.onnx.fx_noden%gelu_3 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem_9,), kwargs = {})JG
+pkg.torch.onnx.name_scopes)['', 'features', 'features.12', 'gelu_3']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+·
+val_62val_63node_Erf_62"ErfJ”
+	namespace†: __main__.VGG/features: torch.nn.modules.container.Sequential/features.12: torch.nn.modules.activation.GELU/gelu_3: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']Jˆ
+pkg.torch.onnx.fx_noden%gelu_3 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem_9,), kwargs = {})JG
+pkg.torch.onnx.name_scopes)['', 'features', 'features.12', 'gelu_3']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+¿
+val_63
+val_15val_65node_Add_64"AddJ”
+	namespace†: __main__.VGG/features: torch.nn.modules.container.Sequential/features.12: torch.nn.modules.activation.GELU/gelu_3: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']Jˆ
+pkg.torch.onnx.fx_noden%gelu_3 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem_9,), kwargs = {})JG
+pkg.torch.onnx.name_scopes)['', 'features', 'features.12', 'gelu_3']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+¿
+val_17
+val_65val_67node_Mul_66"MulJ”
+	namespace†: __main__.VGG/features: torch.nn.modules.container.Sequential/features.12: torch.nn.modules.activation.GELU/gelu_3: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']Jˆ
+pkg.torch.onnx.fx_noden%gelu_3 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem_9,), kwargs = {})JG
+pkg.torch.onnx.name_scopes)['', 'features', 'features.12', 'gelu_3']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+Â
+	getitem_9
+val_67gelu_3node_gelu_3"MulJ”
+	namespace†: __main__.VGG/features: torch.nn.modules.container.Sequential/features.12: torch.nn.modules.activation.GELU/gelu_3: aten.gelu.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.GELU', 'aten.gelu.default']Jˆ
+pkg.torch.onnx.fx_noden%gelu_3 : [num_users=1] = call_function[target=torch.ops.aten.gelu.default](args = (%getitem_9,), kwargs = {})JG
+pkg.torch.onnx.name_scopes)['', 'features', 'features.12', 'gelu_3']J
+pkg.torch.onnx.stack_traceñFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+ê
+gelu_3max_pool2d_1node_max_pool2d_1"MaxPool*
+auto_pad"NOTSET *
+	ceil_mode  *
+	dilations@@ *
+kernel_shape@@ *
+pads@ @ @ @  *
+storage_order  *
+strides@@ J¢
+	namespace”: __main__.VGG/features: torch.nn.modules.container.Sequential/features.13: torch.nn.modules.pooling.MaxPool2d/max_pool2d_1: aten.max_pool2d.defaultJœ
+pkg.torch.onnx.class_hierarchyz['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.pooling.MaxPool2d', 'aten.max_pool2d.default']J¡
+pkg.torch.onnx.fx_node†%max_pool2d_1 : [num_users=1] = call_function[target=torch.ops.aten.max_pool2d.default](args = (%gelu_3, [2, 2], [2, 2]), kwargs = {})JM
+pkg.torch.onnx.name_scopes/['', 'features', 'features.13', 'max_pool2d_1']Jï
+pkg.torch.onnx.stack_traceĞFile "/local/mnt/workspace/evaluate.py", line 90, in forward
+    x = self.features(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/pooling.py", line 226, in forward
+    return F.max_pool2d(
+
+max_pool2d_1
+val_71mean	node_mean"
+ReduceMean*
+keepdims *
+noop_with_empty_axes  J_
+	namespaceR: __main__.VGG/gap: torch.nn.modules.pooling.AdaptiveAvgPool2d/mean: aten.mean.dimJq
+pkg.torch.onnx.class_hierarchyO['__main__.VGG', 'torch.nn.modules.pooling.AdaptiveAvgPool2d', 'aten.mean.dim']J”
+pkg.torch.onnx.fx_nodez%mean : [num_users=1] = call_function[target=torch.ops.aten.mean.dim](args = (%max_pool2d_1, [-1, -2], True), kwargs = {})J1
+pkg.torch.onnx.name_scopes['', 'gap', 'mean']J
+pkg.torch.onnx.stack_traceîFile "/local/mnt/workspace/evaluate.py", line 91, in forward
+    x = self.gap(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/pooling.py", line 1500, in forward
+    return F.adaptive_avg_pool2d(input, self.output_size)
+Ñ
+mean
+val_75view	node_view"Reshape*
+	allowzero J•
+	namespace‡: __main__.VGG/classifier: torch.nn.modules.container.Sequential/classifier.0: torch.nn.modules.flatten.Flatten/view: aten.view.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.flatten.Flatten', 'aten.view.default']JŠ
+pkg.torch.onnx.fx_nodep%view : [num_users=1] = call_function[target=torch.ops.aten.view.default](args = (%mean, [1, 128]), kwargs = {})JH
+pkg.torch.onnx.name_scopes*['', 'classifier', 'classifier.0', 'view']J
+pkg.torch.onnx.stack_traceïFile "/local/mnt/workspace/evaluate.py", line 92, in forward
+    x = self.classifier(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/flatten.py", line 56, in forward
+    return input.flatten(self.start_dim, self.end_dim)
+É
+view
+classifier.2.weight
+classifier.2.biasoutputnode_linear"Gemm*
+alpha  €? *
+beta  €? *
+transA  *
+transB J—
+	namespace‰: __main__.VGG/classifier: torch.nn.modules.container.Sequential/classifier.2: torch.nn.modules.linear.Linear/linear: aten.linear.defaultJ”
+pkg.torch.onnx.class_hierarchyr['__main__.VGG', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.linear.Linear', 'aten.linear.default']J´
+pkg.torch.onnx.fx_node™%linear : [num_users=1] = call_function[target=torch.ops.aten.linear.default](args = (%clone, %p_classifier_2_weight, %p_classifier_2_bias), kwargs = {})JJ
+pkg.torch.onnx.name_scopes,['', 'classifier', 'classifier.2', 'linear']JŠ
+pkg.torch.onnx.stack_traceëFile "/local/mnt/workspace/evaluate.py", line 92, in forward
+    x = self.classifier(x)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/linear.py", line 134, in forward
+    return F.linear(input, self.weight, self.bias)
+main_graph*š@Bfeatures.1.weightJ€kzh?Ú?):?YºÊ>¶Ê?á¤?òe?ü<P?ó§Ü>D®>í\V>´Ÿ\?œ"?õÜ%?%óE?…D?Şb??¦×2?ZxŞ>6?r(‰?7ÜQ?Ô´$?3Â4?]¦­>M†Ü>}T5?Üd¾>í9×>JÏ>Ä"8?ÁÏ%?#?,ÊW?òb¬?ôw?Í¹œ>Aœ>´[`?<P2?í<-?	ÉŒ?c\§?Ç|ö>}iP?’B?yË
+?˜l-?ZÃ?»…!?ÃÙU>¸º?™»Ë>úO?«S
+?#„U?0(¬>~\ı>;7?íâ>?Ã4 ?-á­>r	é>\?*˜@Bfeatures.1.biasJ€‰	½½¨Wª¾ õ¾Òš¾Nj½	‡9?}ín?‹c/?Eˆ¾ùÑ½İsØ½ Y?Vh?wÛ¾OŞ ?2	¶>ÃÔ¾¿ò½’Îœ¾ô·U>A3¿AT¥¾¢[¾ãÚ¤¾bG=¾àŠŒ¾B¾(½	Ü¾–î‹¾Â¹Ø¾,ç>=("‚=*¬>f_?`—İ½=J¾7§h¾B­>/‘œ¾ã¼
+>&·K¿z@?1‚d½€SC¾…±½}ê>œt>®nÈ¾lú’¾î¾@ød?äĞ€¾ç"	¿Ô[/>–@3¿\½½ì“¾-2‡>ôıø¾ïˆ¬¾uŞl¾Ï8¾Gù¾*š@Bfeatures.4.weightJ€¶?¿¤:?J.)?øF†?je0?lq?3·è>MDm?TƒØ>u£W?ÃYJ?ùèn?Âœl?>9?İc?| @?R‡
+?Ã:3?Ñ Q?Lb?7`?µ––?›?ß0?Êãa?dÖ ?M ?«¡F?Èø>÷(?Oš?_†S?.¼e?"_0?ûË@?ÆD?éÁ;?­?öws?  D?@¥?n!?bÅ@?ú<ì>™Kc?ŞV?eËq?œ›;?Íy?|oB?áñ¢?È"L?`nˆ?ÛÑF?ØE?3¤>_?ğ–?¹ˆ?Ø’-?*Æ?¦«?Û5³>é‚O?*˜@Bfeatures.4.biasJ€ˆ°,¿Å¿ÿ<ñ¾âD¿À'Œ¾ü!¾Ú¦H¾®q=¿¹¾p¬¿Ó
+¿ÖSB¿:¸%¿‡£ø¾ @;¿&wÏ¾—‚¾6•¾Ñ®¿{µ¥¾ŸR¿@$K¿ƒåñ½ÏüÀ¾ş±#¿ƒ·¿¼ À¾í³¾òó½—¢—¾`ŞN¿OBõ¾m#¿ËTØ¾Á¨¿Íèà¾CÖ¿²'¿¬‹¿å¾U1Ò¾«€B¾ó¡¿vˆš=Í¨¾¸¿^Ş¾u9ë¾Òªã¾³¿ı7¿’Şà¾½©¾¾.ˆå¾‹1i¿%¿ >™½c¿Yì1¿7ÁÌ¾jı¿#K¿ş[Ö>sãœ¾*[€Bfeatures.8.weightj#
+locationbest_vgg6_c22.onnx.dataj
+offset0j
+length512p*[€Bfeatures.8.biasj#
+locationbest_vgg6_c22.onnx.dataj
+offset512j
+length512p*_€Bfeatures.11.weightj#
+locationbest_vgg6_c22.onnx.dataj
+offset1024j
+length512p*]€Bfeatures.11.biasj#
+locationbest_vgg6_c22.onnx.dataj
+offset1536j
+length512p*A
+Bclassifier.2.biasJ(U“>H¶¾/ =èsm>0—=²%½hB’>›¶¾†¥Ò<&ÖÌ¾* @Bfeatures.1.running_meanJ€©—b=XcI¼ÌØ=Ú¾æÀ½ {Ê½,›4<ó@t9¾mü½õ;Æ½-&*<«eÍ¼×a¾ Ò¼C‚Ç¼¹¨>ÛºD=B<j¼ªw:Nz<ŒLR=¦,¯<à,¾".ò½VK
+¼‡ÛË<ÖÁ¾2ãÍ=—?¾|Í>c#—<j¹´¼‡F<5à#¾T»ç«½·ñT¾ÉdI¼ë&ä=L’J½‰•Ê<4°½4&;$—Ğ=úò¾<)—¯;3²»êÄ=-d)>vÂ½Ñ¯ü½¨@¾j"¡>Añ<ï":=…L!>.{Ì=Õì=Kb–=(w7<hkä½êp»‚ƒÁ<*Ÿ@Bfeatures.1.running_varJ€Ôú@ M´>6!9?^Y?·-‹>ÛåO@o¸+?pP?c1?œÍô=ÆŒ>ö:?^±Ä>…ß¿?#ÑÉ>J?@4@?VÎ>§ò?õr>şmù?†?¡ÎK>²”@7_3?
+¥t>ŠV>v¸Ï>íĞ ?x%?L±\?¶ì¹>«Ü°>ëV?ÔÇ‡@7æ>í”±>B¬D?d[ @gªÕ>bÆŞ?ÁŸ“?¥ğP@ª­=û‘?«¬§>($>¯Ù8>}Eç>c¸?˜kJ>ê%›@êGM?LHæ?¤>Áh?‹Õù>ƒœD?¯²N?ˆ?ŒE>­¾>Ğ³>•%1?* @Bfeatures.4.running_meanJ€Æë¿–à¿í@¿"1Àø'•Àìó“¿–³­>‹ØÀ6¡;>ò À!Ğ´¿¤rØ¿eÏÇ¿wˆ¾hö	À˜¿ ¿Û¢ÿ¿Ì2?ûŸ+ÀÀğ´#À£NÀ²àÃ¿.Ş¿C…N¿<Äq¿/oö¿ŞØ”¿•FÀßôÒ¿{&ÀŠ%j¿ºân¿Æµb¿aÃÀBÏ¿À§’?Í"ÀpÈ¿’|¾K
+2ÀeÂá¿Á´Õ¿}xQ¿ôê¶¿VdÀéc©¿29±¾º@Àå
+ç¿9±ÿ¿ËşÁ¿o#¾¿òè¿ş™i¿—ìJ¿”r5À¸2ÀúFÕ¿.©2¾?çÑa¿Îó(À*Ÿ@Bfeatures.4.running_varJ€“=Â@ª1.@¾k'@rÇ¼@)¤€@bT…@äÌ²?ã’@C"@÷î‡@c@=,@ÀR@}n&@^'i@İ%K@ğ	@F@3°5@Ë­@­ƒ@ùæ@^à?¯~@†˜@vÉ?£Øµ?’µh@ã²?gkº?åòõ@ÌrK@:C@¼/$@
+ö@‹ºb@Ú@
+WÁ?Ö°“@/CN@;ñ?= D@Aé=@Jg@L¾]@ùp@øF¾@t6@? É?²;V@'@ÿ@¿c@1¡Ê@›\@›˜¹?æ«‘?‘„@.Â½@ï”@æ ñ?ßØ@Ç?²~U@¥Vb@*d€Bfeatures.8.running_meanj#
+locationbest_vgg6_c22.onnx.dataj
+offset2048j
+length512p*c€Bfeatures.8.running_varj#
+locationbest_vgg6_c22.onnx.dataj
+offset2560j
+length512p*e€Bfeatures.11.running_meanj#
+locationbest_vgg6_c22.onnx.dataj
+offset3072j
+length512p*d€Bfeatures.11.running_varj#
+locationbest_vgg6_c22.onnx.dataj
+offset3584j
+length512p*d@Bfeatures.0.weightj#
+locationbest_vgg6_c22.onnx.dataj
+offset9728j
+length6912p*g@@Bfeatures.3.weightj#
+locationbest_vgg6_c22.onnx.dataj
+offset16640j
+length147456p*i€@Bfeatures.7.weightj#
+locationbest_vgg6_c22.onnx.dataj
+offset164096j
+length294912p*k€€Bfeatures.10.weightj#
+locationbest_vgg6_c22.onnx.dataj
+offset459008j
+length589824p*c
+€Bclassifier.2.weightj#
+locationbest_vgg6_c22.onnx.dataj
+offset4608j
+length5120p*@Bval_5J€                                                                                                                                                                                                                                                                *Bval_12Jóµ?*Bval_15J  €?*Bval_17J   ?*S€Bval_40j#
+locationbest_vgg6_c22.onnx.dataj
+offset4096j
+length512p*Bval_71Jÿÿÿÿÿÿÿÿşÿÿÿÿÿÿÿ*Bval_75J       €       ZÅ
+input
+
+
+
+ 
+ "=
+/pkg.torch.export.graph_signature.InputSpec.kind
+USER_INPUT"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"&
+!pkg.torch.onnx.original_node_namexb†
+output
+
+
+
+"?
+0pkg.torch.export.graph_signature.OutputSpec.kindUSER_OUTPUT"+
+!pkg.torch.onnx.original_node_namelinearjÖ
+features.1.weight
+
+
+@"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_features_1_weightjÒ
+features.1.bias
+
+
+@"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"6
+!pkg.torch.onnx.original_node_namep_features_1_biasjÖ
+features.4.weight
+
+
+@"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_features_4_weightjÒ
+features.4.bias
+
+
+@"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"6
+!pkg.torch.onnx.original_node_namep_features_4_biasj×
+features.8.weight
+	
+€"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_features_8_weightjÓ
+features.8.bias
+	
+€"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"6
+!pkg.torch.onnx.original_node_namep_features_8_biasjÙ
+features.11.weight
+	
+€"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"9
+!pkg.torch.onnx.original_node_namep_features_11_weightjÕ
+features.11.bias
+	
+€"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"7
+!pkg.torch.onnx.original_node_namep_features_11_biasjÖ
+classifier.2.bias
+
+
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_classifier_2_biasjß
+features.1.running_mean
+
+
+@"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue">
+!pkg.torch.onnx.original_node_nameb_features_1_running_meanjİ
+features.1.running_var
+
+
+@"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"=
+!pkg.torch.onnx.original_node_nameb_features_1_running_varjß
+features.4.running_mean
+
+
+@"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue">
+!pkg.torch.onnx.original_node_nameb_features_4_running_meanjİ
+features.4.running_var
+
+
+@"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"=
+!pkg.torch.onnx.original_node_nameb_features_4_running_varjà
+features.8.running_mean
+	
+€"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue">
+!pkg.torch.onnx.original_node_nameb_features_8_running_meanjŞ
+features.8.running_var
+	
+€"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"=
+!pkg.torch.onnx.original_node_nameb_features_8_running_varjâ
+features.11.running_mean
+	
+€"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue"?
+!pkg.torch.onnx.original_node_nameb_features_11_running_meanjà
+features.11.running_var
+	
+€"9
+/pkg.torch.export.graph_signature.InputSpec.kindBUFFER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentTrue">
+!pkg.torch.onnx.original_node_nameb_features_11_running_varjâ
+features.0.weight
+
+@
+
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_features_0_weightjâ
+features.3.weight
+
+@
+@
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_features_3_weightjã
+features.7.weight
+
+€
+@
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"8
+!pkg.torch.onnx.original_node_namep_features_7_weightjæ
+features.10.weight
+
+€
+€
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"9
+!pkg.torch.onnx.original_node_namep_features_10_weightjß
+classifier.2.weight
+	
+
+
+€"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone":
+!pkg.torch.onnx.original_node_namep_classifier_2_weightjv
+val_5
+
+
+@"a
+$pkg.onnxscript.optimizer.folded_from9['features.0.weight', 'val_0', 'val_2', 'val_3', 'val_4']j
+val_12
+ j
+val_15
+ j
+val_17
+ j{
+val_40
+	
+€"d
+$pkg.onnxscript.optimizer.folded_from<['features.7.weight', 'val_3', 'val_36', 'val_38', 'val_39']jR
+val_71
+
+
+"<
+$pkg.onnxscript.optimizer.folded_from['val_69', 'val_70']jR
+val_75
+
+
+"<
+$pkg.onnxscript.optimizer.folded_from['val_73', 'val_74']j 
+conv2d
+
+
+@
+ 
+ j!
+getitem
+
+
+@
+ 
+ j 
+val_13
+
+
+@
+ 
+ j 
+val_14
+
+
+@
+ 
+ j 
+val_16
+
+
+@
+ 
+ j 
+val_18
+
+
+@
+ 
+ j
+gelu
+
+
+@
+ 
+ j"
+conv2d_1
+
+
+@
+ 
+ j#
+	getitem_3
+
+
+@
+ 
+ j 
+val_29
+
+
+@
+ 
+ j 
+val_30
+
+
+@
+ 
+ j 
+val_32
+
+
+@
+ 
+ j 
+val_34
+
+
+@
+ 
+ j 
+gelu_1
+
+
+@
+ 
+ j$
+
+max_pool2d
+
+
+@
+
+j#
+conv2d_2
+
+
+€
+
+j$
+	getitem_6
+
+
+€
+
+j!
+val_46
+
+
+€
+
+j!
+val_47
+
+
+€
+
+j!
+val_49
+
+
+€
+
+j!
+val_51
+
+
+€
+
+j!
+gelu_2
+
+
+€
+
+j#
+conv2d_3
+
+
+€
+
+j$
+	getitem_9
+
+
+€
+
+j!
+val_62
+
+
+€
+
+j!
+val_63
+
+
+€
+
+j!
+val_65
+
+
+€
+
+j!
+val_67
+
+
+€
+
+j!
+gelu_3
+
+
+€
+
+j'
+max_pool2d_1
+
+
+€
+
+j
+mean
+
+
+€
+
+j
+view
+	
+
+€‚¬
+0pkg.torch.export.ExportedProgram.graph_signature÷
+# inputs
+p_features_0_weight: PARAMETER target='features.0.weight'
+p_features_1_weight: PARAMETER target='features.1.weight'
+p_features_1_bias: PARAMETER target='features.1.bias'
+p_features_3_weight: PARAMETER target='features.3.weight'
+p_features_4_weight: PARAMETER target='features.4.weight'
+p_features_4_bias: PARAMETER target='features.4.bias'
+p_features_7_weight: PARAMETER target='features.7.weight'
+p_features_8_weight: PARAMETER target='features.8.weight'
+p_features_8_bias: PARAMETER target='features.8.bias'
+p_features_10_weight: PARAMETER target='features.10.weight'
+p_features_11_weight: PARAMETER target='features.11.weight'
+p_features_11_bias: PARAMETER target='features.11.bias'
+p_classifier_2_weight: PARAMETER target='classifier.2.weight'
+p_classifier_2_bias: PARAMETER target='classifier.2.bias'
+b_features_1_running_mean: BUFFER target='features.1.running_mean' persistent=True
+b_features_1_running_var: BUFFER target='features.1.running_var' persistent=True
+b_features_1_num_batches_tracked: BUFFER target='features.1.num_batches_tracked' persistent=True
+b_features_4_running_mean: BUFFER target='features.4.running_mean' persistent=True
+b_features_4_running_var: BUFFER target='features.4.running_var' persistent=True
+b_features_4_num_batches_tracked: BUFFER target='features.4.num_batches_tracked' persistent=True
+b_features_8_running_mean: BUFFER target='features.8.running_mean' persistent=True
+b_features_8_running_var: BUFFER target='features.8.running_var' persistent=True
+b_features_8_num_batches_tracked: BUFFER target='features.8.num_batches_tracked' persistent=True
+b_features_11_running_mean: BUFFER target='features.11.running_mean' persistent=True
+b_features_11_running_var: BUFFER target='features.11.running_var' persistent=True
+b_features_11_num_batches_tracked: BUFFER target='features.11.num_batches_tracked' persistent=True
+x: USER_INPUT
+
+# outputs
+linear: USER_OUTPUT
+‚8
+2pkg.torch.export.ExportedProgram.range_constraints{}B
+ 
