@@ -1,0 +1,421 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Multi-run VGG6 on CIFAR-10 (NO W&B)
+-----------------------------------
+Runs 20+ predefined configurations in a single script, trains each,
+prints a live summary, and appends results to a CSV file.
+
+Usage (example):
+  python multirun_vgg6_no_wandb.py --epochs 20 --csv-path results.csv --save-checkpoints
+
+Notes:
+- Creates/uses CIFAR-10 at ./data by default
+- Splits 5,000 images from train as validation (45k train / 5k val)
+- You can limit the number of configurations via --limit N
+"""
+
+import os
+import time
+import math
+import csv
+import argparse
+import random
+from typing import List, Dict, Tuple
+
+import numpy as np
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torch.nn.functional as F
+from torch.utils.data import DataLoader, random_split
+from torchvision import datasets, transforms
+
+# ------------------------ Utilities ------------------------
+
+def set_seed(seed: int = 42):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+
+
+def accuracy(output: torch.Tensor, target: torch.Tensor, topk=(1,)):
+    with torch.no_grad():
+        maxk = max(topk)
+        batch_size = target.size(0)
+        _, pred = output.topk(maxk, 1, True, True)
+        pred = pred.t()
+        correct = pred.eq(target.view(1, -1).expand_as(pred))
+        res = []
+        for k in topk:
+            correct_k = correct[:k].reshape(-1).float().sum(0, keepdim=True)
+            res.append(correct_k.mul_(100.0 / batch_size).item())
+        return res
+
+
+class AverageMeter:
+    def __init__(self):
+        self.reset()
+    def reset(self):
+        self.sum = 0.0
+        self.count = 0
+    @property
+    def avg(self):
+        return self.sum / max(1, self.count)
+    def update(self, val, n=1):
+        self.sum += val * n
+        self.count += n
+
+
+# --------------------- Data (CIFAR-10) ---------------------
+
+class Cutout(object):
+    def __init__(self, n_holes: int, length: int):
+        self.n_holes = n_holes
+        self.length = length
+    def __call__(self, img):
+        # img: Tensor CxHxW
+        h = img.size(1)
+        w = img.size(2)
+        mask = np.ones((h, w), np.float32)
+        for _ in range(self.n_holes):
+            y = np.random.randint(h)
+            x = np.random.randint(w)
+            y1 = np.clip(y - self.length // 2, 0, h)
+            y2 = np.clip(y + self.length // 2, 0, h)
+            x1 = np.clip(x - self.length // 2, 0, w)
+            x2 = np.clip(x + self.length // 2, 0, w)
+            mask[y1:y2, x1:x2] = 0.
+        mask = torch.from_numpy(mask)
+        mask = mask.expand_as(img)
+        img = img * mask
+        return img
+
+
+def get_cifar10_loaders(data_root: str, batch_size: int, num_workers: int = 2, val_split: int = 5000):
+    train_tfms = [
+        transforms.RandomCrop(32, padding=4),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+        Cutout(n_holes=1, length=16),
+    ]
+    test_tfms = [
+        transforms.ToTensor(),
+        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+    ]
+    full_train = datasets.CIFAR10(data_root, train=True, transform=transforms.Compose(train_tfms), download=True)
+    test_data  = datasets.CIFAR10(data_root, train=False, transform=transforms.Compose(test_tfms), download=True)
+
+    if val_split > 0 and val_split < len(full_train):
+        train_len = len(full_train) - val_split
+        train_data, val_data = random_split(full_train, [train_len, val_split], generator=torch.Generator().manual_seed(2025))
+    else:
+        train_data, val_data = full_train, None
+
+    train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True, num_workers=num_workers, pin_memory=True)
+    val_loader   = DataLoader(val_data, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=True) if val_data is not None else None
+    test_loader  = DataLoader(test_data,  batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=True)
+    return train_loader, val_loader, test_loader
+
+
+# --------------------- Model: VGG6 ---------------------
+
+ACT_MAP = {
+    'relu': nn.ReLU(inplace=True),
+    'leaky_relu': nn.LeakyReLU(0.1, inplace=True),
+    'sigmoid': nn.Sigmoid(),
+    'tanh': nn.Tanh(),
+    'silu': nn.SiLU(inplace=True),
+    'gelu': nn.GELU(),
+}
+
+class VGG(nn.Module):
+    def __init__(self, features: nn.Sequential, num_classes: int = 10, last_c: int = 128, dropout: float = 0.0):
+        super().__init__()
+        self.features = features
+        self.gap = nn.AdaptiveAvgPool2d((1, 1))
+        self.classifier = nn.Sequential(
+            nn.Flatten(),
+            nn.Dropout(p=dropout),
+            nn.Linear(last_c, num_classes),
+        )
+        self._init_weights()
+    def forward(self, x):
+        x = self.features(x)
+        x = self.gap(x)
+        x = self.classifier(x)
+        return x
+    def _init_weights(self):
+        for m in self.modules():
+            if isinstance(m, nn.Conv2d):
+                nn.init.kaiming_normal_(m.weight, nonlinearity='relu')
+                if m.bias is not None:
+                    nn.init.zeros_(m.bias)
+            elif isinstance(m, nn.Linear):
+                nn.init.kaiming_normal_(m.weight, nonlinearity='relu')
+                if m.bias is not None:
+                    nn.init.zeros_(m.bias)
+            elif isinstance(m, nn.BatchNorm2d):
+                nn.init.ones_(m.weight)
+                nn.init.zeros_(m.bias)
+
+
+def make_layers(cfg: List, in_channels: int = 3, bn: bool = True, activation: str = 'relu', width_mult: float = 1.0):
+    layers: List[nn.Module] = []
+    act = ACT_MAP.get(activation.lower(), nn.ReLU(inplace=True))
+    last_channels = None
+    for v in cfg:
+        if v == 'M':
+            layers += [nn.MaxPool2d(kernel_size=2, stride=2)]
+        else:
+            out_c = int(v * width_mult)
+            conv2d = nn.Conv2d(in_channels, out_c, kernel_size=3, padding=1, bias=not bn)
+            if bn:
+                layers += [conv2d, nn.BatchNorm2d(out_c), act]
+            else:
+                layers += [conv2d, act]
+            in_channels = out_c
+            last_channels = out_c
+    return nn.Sequential(*layers), last_channels or int(128 * width_mult)
+
+
+def vgg6(num_classes: int = 10, bn: bool = True, activation: str = 'relu', width_mult: float = 1.0, dropout: float = 0.0):
+    cfg_vgg6 = [64, 64, 'M', 128, 128, 'M']
+    features, last_c = make_layers(cfg_vgg6, bn=bn, activation=activation, width_mult=width_mult)
+    return VGG(features, num_classes=num_classes, last_c=last_c, dropout=dropout)
+
+
+# --------------------- Train / Evaluate ---------------------
+
+def build_optimizer(name: str, params, lr: float, weight_decay: float, momentum: float = 0.9):
+    name = name.lower()
+    if name == 'sgd':
+        return optim.SGD(params, lr=lr, momentum=momentum, weight_decay=weight_decay)
+    if name == 'nesterov':
+        return optim.SGD(params, lr=lr, momentum=momentum, nesterov=True, weight_decay=weight_decay)
+    if name == 'adam':
+        return optim.Adam(params, lr=lr, weight_decay=weight_decay)
+    if name == 'adamw':
+        return optim.AdamW(params, lr=lr, weight_decay=weight_decay)
+    if name == 'adagrad':
+        return optim.Adagrad(params, lr=lr, weight_decay=weight_decay)
+    if name == 'rmsprop':
+        return optim.RMSprop(params, lr=lr, momentum=momentum, weight_decay=weight_decay)
+    if hasattr(optim, 'NAdam') and name == 'nadam':
+        return optim.NAdam(params, lr=lr, weight_decay=weight_decay)
+    raise ValueError(f"Unsupported optimizer: {name}")
+
+
+def train_one_epoch(model, loader, criterion, optimizer, device):
+    model.train()
+    loss_m, acc_m = AverageMeter(), AverageMeter()
+    for x, y in loader:
+        x, y = x.to(device, non_blocking=True), y.to(device, non_blocking=True)
+        optimizer.zero_grad(set_to_none=True)
+        out = model(x)
+        loss = criterion(out, y)
+        loss.backward()
+        optimizer.step()
+        acc1, = accuracy(out, y, topk=(1,))
+        loss_m.update(loss.item(), n=x.size(0))
+        acc_m.update(acc1, n=x.size(0))
+    return loss_m.avg, acc_m.avg
+
+
+def evaluate(model, loader, criterion, device):
+    model.eval()
+    loss_m, acc_m = AverageMeter(), AverageMeter()
+    with torch.no_grad():
+        for x, y in loader:
+            x, y = x.to(device, non_blocking=True), y.to(device, non_blocking=True)
+            out = model(x)
+            loss = criterion(out, y)
+            acc1, = accuracy(out, y, topk=(1,))
+            loss_m.update(loss.item(), n=x.size(0))
+            acc_m.update(acc1, n=x.size(0))
+    return loss_m.avg, acc_m.avg
+
+
+# --------------------- Config Generation ---------------------
+
+def generate_configs() -> List[Dict]:
+    """Generate >=24 deterministic configs across activations, optimizers, lrs, batch sizes."""
+    activations = ['relu', 'gelu', 'silu']
+    optimizers = ['sgd', 'nesterov', 'adam', 'adamw']
+    lr_by_opt = {
+        'sgd': [0.1, 0.01],
+        'nesterov': [0.1, 0.01],
+        'adam': [0.001, 0.0005],
+        'adamw': [0.001, 0.0005],
+    }
+    batch_sizes = [64, 128]
+    scheduler_by_opt = {
+        'sgd': 'multistep',
+        'nesterov': 'multistep',
+        'adam': 'cosine',
+        'adamw': 'cosine',
+    }
+    cfgs = []
+    cid = 1
+    for act in activations:
+        for opt in optimizers:
+            for lr in lr_by_opt[opt]:
+                for bs in batch_sizes:
+                    cfgs.append({
+                        'id': f'C{cid:02d}',
+                        'activation': act,
+                        'optimizer': opt,
+                        'lr': lr,
+                        'batch_size': bs,
+                        'bn': True,
+                        'dropout': 0.0 if bs==128 else 0.3,
+                        'weight_decay': 5e-4,
+                        'momentum': 0.9,
+                        'scheduler': scheduler_by_opt[opt],
+                        'width_mult': 1.0,
+                    })
+                    cid += 1
+    # take first 24 for runtime manageability; still 20+
+    return cfgs[:24]
+
+
+# --------------------- Run one configuration ---------------------
+
+def run_config(cfg: Dict, args) -> Dict:
+    set_seed(args.seed)
+    device = torch.device(args.device if args.device else ('cuda' if torch.cuda.is_available() else 'cpu'))
+
+    train_loader, val_loader, test_loader = get_cifar10_loaders(
+        data_root=args.data_root,
+        batch_size=cfg['batch_size'],
+        num_workers=args.num_workers,
+        val_split=args.val_split,
+    )
+
+    model = vgg6(
+        num_classes=10,
+        bn=cfg['bn'],
+        activation=cfg['activation'],
+        width_mult=cfg['width_mult'],
+        dropout=cfg['dropout'],
+    ).to(device)
+
+    criterion = nn.CrossEntropyLoss()
+    optimizer = build_optimizer(cfg['optimizer'], model.parameters(), lr=cfg['lr'], weight_decay=cfg['weight_decay'], momentum=cfg['momentum'])
+
+    # Simple scheduler choices
+    scheduler = None
+    if cfg['scheduler'] == 'cosine':
+        scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=args.epochs)
+    elif cfg['scheduler'] == 'multistep':
+        scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[int(0.6*args.epochs), int(0.8*args.epochs)], gamma=0.1)
+
+    start = time.time()
+    best_val_acc = -1.0
+    best_epoch = -1
+    best_state = None
+
+    for epoch in range(args.epochs):
+        tr_loss, tr_acc = train_one_epoch(model, train_loader, criterion, optimizer, device)
+        if val_loader is not None:
+            va_loss, va_acc = evaluate(model, val_loader, criterion, device)
+            if va_acc > best_val_acc:
+                best_val_acc = va_acc
+                best_epoch = epoch + 1
+                best_state = {k: v.cpu() for k, v in model.state_dict().items()}
+        else:
+            # if no val split, use test as proxy (not recommended for final eval)
+            va_loss, va_acc = evaluate(model, test_loader, criterion, device)
+            if va_acc > best_val_acc:
+                best_val_acc = va_acc
+                best_epoch = epoch + 1
+                best_state = {k: v.cpu() for k, v in model.state_dict().items()}
+        if scheduler is not None:
+            scheduler.step()
+        print(f"[{cfg['id']}] Epoch {epoch+1:03d}/{args.epochs} | train_loss={tr_loss:.4f} acc={tr_acc:.2f} | val_loss={va_loss:.4f} acc={va_acc:.2f}")
+
+    # Evaluate best checkpoint on test set
+    if best_state is not None:
+        model.load_state_dict(best_state)
+    te_loss, te_acc = evaluate(model, test_loader, criterion, device)
+
+    runtime = time.time() - start
+
+    # Save checkpoint if requested
+    if args.save_checkpoints:
+        os.makedirs(args.save_dir, exist_ok=True)
+        torch.save({'model_state': best_state if best_state is not None else model.state_dict(), 'cfg': cfg, 'args': vars(args), 'best_val_acc': best_val_acc, 'best_epoch': best_epoch}, os.path.join(args.save_dir, f"{cfg['id']}.pt"))
+
+    result = {
+        'id': cfg['id'],
+        'activation': cfg['activation'],
+        'optimizer': cfg['optimizer'],
+        'lr': cfg['lr'],
+        'batch_size': cfg['batch_size'],
+        'bn': cfg['bn'],
+        'dropout': cfg['dropout'],
+        'scheduler': cfg['scheduler'],
+        'weight_decay': cfg['weight_decay'],
+        'momentum': cfg['momentum'],
+        'width_mult': cfg['width_mult'],
+        'epochs': args.epochs,
+        'seed': args.seed,
+        'val_split': args.val_split,
+        'best_val_acc': round(best_val_acc, 2),
+        'best_epoch': best_epoch,
+        'test_acc_at_best': round(te_acc, 2),
+        'runtime_sec': round(runtime, 2),
+        'device': str(device),
+    }
+    return result
+
+
+# --------------------- Main orchestrator ---------------------
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument('--epochs', type=int, default=20)
+    p.add_argument('--data-root', type=str, default='./data')
+    p.add_argument('--csv-path', type=str, default='results.csv')
+    p.add_argument('--num-workers', type=int, default=2)
+    p.add_argument('--val-split', type=int, default=5000)
+    p.add_argument('--seed', type=int, default=42)
+    p.add_argument('--limit', type=int, default=0, help='Run only first N configs (0 = all)')
+    p.add_argument('--device', type=str, default=None, help="cuda, cpu, or cuda:0 etc. Default: auto")
+    p.add_argument('--save-checkpoints', action='store_true')
+    p.add_argument('--save-dir', type=str, default='./checkpoints')
+    args = p.parse_args()
+
+    set_seed(args.seed)
+
+    cfgs = generate_configs()
+    if args.limit and args.limit > 0:
+        cfgs = cfgs[:args.limit]
+
+    print(f"Running {len(cfgs)} configurations; epochs={args.epochs}; results -> {args.csv_path}")
+
+    # Prepare CSV with header if not exists
+    header = ['id','activation','optimizer','lr','batch_size','bn','dropout','scheduler','weight_decay','momentum','width_mult','epochs','seed','val_split','best_val_acc','best_epoch','test_acc_at_best','runtime_sec','device']
+    file_exists = os.path.exists(args.csv_path)
+    with open(args.csv_path, 'a', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=header)
+        if not file_exists:
+            writer.writeheader()
+        for cfg in cfgs:
+            print("\n==============================")
+            print(f"Config {cfg['id']}: act={cfg['activation']} opt={cfg['optimizer']} lr={cfg['lr']} bs={cfg['batch_size']} sched={cfg['scheduler']}")
+            res = run_config(cfg, args)
+            writer.writerow(res)
+            f.flush()
+            print(f"Result: best_val_acc={res['best_val_acc']}% (epoch {res['best_epoch']}) | test_acc_at_best={res['test_acc_at_best']}% | time={res['runtime_sec']}s")
+
+    print("\nAll runs finished. Results saved to:", os.path.abspath(args.csv_path))
+
+
+if __name__ == '__main__':
+    main()
+
